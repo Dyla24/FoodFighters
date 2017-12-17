@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: c7e21004aa4f3f144a5148601c066ff8
+timeCreated: 1513541325
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: base_LP
+    100002: bridge_placeholder
+    100004: ice_cream_fidge_24
+    100006: ice_cream_fidge_24_MeshPart0
+    100008: ice_cream_fidge_24_MeshPart1
+    100010: ice_cream_fidge_24_MeshPart2
+    100012: Line_LP
+    100014: Line_LP002
+    100016: Object1996
+    100018: Object1996_MeshPart0
+    100020: Object1996_MeshPart1
+    100022: Object1996_MeshPart2
+    100024: Object1996_MeshPart3
+    100026: Object1996_MeshPart4
+    100028: Object1996_MeshPart5
+    100030: Object1996_MeshPart6
+    100032: Object1998
+    100034: Oven
+    100036: Oven001
+    100038: //RootNode
+    100040: stand_counter
+    100042: test_bin
+    100044: test_bin001
+    100046: test_bin002
+    100048: test_bin003
+    400000: base_LP
+    400002: bridge_placeholder
+    400004: ice_cream_fidge_24
+    400006: ice_cream_fidge_24_MeshPart0
+    400008: ice_cream_fidge_24_MeshPart1
+    400010: ice_cream_fidge_24_MeshPart2
+    400012: Line_LP
+    400014: Line_LP002
+    400016: Object1996
+    400018: Object1996_MeshPart0
+    400020: Object1996_MeshPart1
+    400022: Object1996_MeshPart2
+    400024: Object1996_MeshPart3
+    400026: Object1996_MeshPart4
+    400028: Object1996_MeshPart5
+    400030: Object1996_MeshPart6
+    400032: Object1998
+    400034: Oven
+    400036: Oven001
+    400038: //RootNode
+    400040: stand_counter
+    400042: test_bin
+    400044: test_bin001
+    400046: test_bin002
+    400048: test_bin003
+    2300000: base_LP
+    2300002: bridge_placeholder
+    2300004: ice_cream_fidge_24_MeshPart0
+    2300006: ice_cream_fidge_24_MeshPart1
+    2300008: ice_cream_fidge_24_MeshPart2
+    2300010: Line_LP
+    2300012: Line_LP002
+    2300014: Object1996_MeshPart0
+    2300016: Object1996_MeshPart1
+    2300018: Object1996_MeshPart2
+    2300020: Object1996_MeshPart3
+    2300022: Object1996_MeshPart4
+    2300024: Object1996_MeshPart5
+    2300026: Object1996_MeshPart6
+    2300028: Object1998
+    2300030: Oven
+    2300032: Oven001
+    2300034: stand_counter
+    2300036: test_bin
+    2300038: test_bin001
+    2300040: test_bin002
+    2300042: test_bin003
+    3300000: base_LP
+    3300002: bridge_placeholder
+    3300004: ice_cream_fidge_24_MeshPart0
+    3300006: ice_cream_fidge_24_MeshPart1
+    3300008: ice_cream_fidge_24_MeshPart2
+    3300010: Line_LP
+    3300012: Line_LP002
+    3300014: Object1996_MeshPart0
+    3300016: Object1996_MeshPart1
+    3300018: Object1996_MeshPart2
+    3300020: Object1996_MeshPart3
+    3300022: Object1996_MeshPart4
+    3300024: Object1996_MeshPart5
+    3300026: Object1996_MeshPart6
+    3300028: Object1998
+    3300030: Oven
+    3300032: Oven001
+    3300034: stand_counter
+    3300036: test_bin
+    3300038: test_bin001
+    3300040: test_bin002
+    3300042: test_bin003
+    4300000: base_LP
+    4300002: bridge_placeholder
+    4300004: ice_cream_fidge_24_MeshPart0
+    4300006: ice_cream_fidge_24_MeshPart1
+    4300008: ice_cream_fidge_24_MeshPart2
+    4300010: Line_LP
+    4300012: Line_LP002
+    4300014: Object1996_MeshPart0
+    4300016: Object1996_MeshPart1
+    4300018: Object1996_MeshPart2
+    4300020: Object1996_MeshPart3
+    4300022: Object1996_MeshPart4
+    4300024: Object1996_MeshPart5
+    4300026: Object1996_MeshPart6
+    4300028: Object1998
+    4300030: Oven
+    4300032: Oven001
+    4300034: stand_counter
+    4300036: test_bin
+    4300038: test_bin001
+    4300040: test_bin002
+    4300042: test_bin003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
