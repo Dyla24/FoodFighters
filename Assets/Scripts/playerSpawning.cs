@@ -31,7 +31,7 @@ public class playerSpawning : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            activePlayers.Add(Instantiate(players[i], spawnPoints[i].transform.position, Quaternion.identity));
+            activePlayers.Add(Instantiate(players[i], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation));
         }
     }
 
