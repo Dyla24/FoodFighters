@@ -37,6 +37,12 @@ ModelImporter:
     4300006: Object003
     4300008: Object004
     4300010: Object03
+    6400000: bun
+    6400002: bun001
+    6400004: Object002
+    6400006: Object003
+    6400008: Object004
+    6400010: Object03
   materials:
     importMaterials: 1
     materialName: 0
@@ -65,7 +71,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

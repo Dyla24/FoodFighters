@@ -37,6 +37,12 @@ ModelImporter:
     4300006: pizza_base
     4300008: veg_01
     4300010: veg_2
+    6400000: melted_cheese
+    6400002: mushrooms
+    6400004: pepperoni
+    6400006: pizza_base
+    6400008: veg_01
+    6400010: veg_2
   materials:
     importMaterials: 1
     materialName: 0
@@ -65,7 +71,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

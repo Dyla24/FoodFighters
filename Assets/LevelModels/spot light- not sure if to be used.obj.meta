@@ -17,6 +17,8 @@ ModelImporter:
     3300002: light_base___light
     4300000: glass_over_light
     4300002: light_base___light
+    6400000: glass_over_light
+    6400002: light_base___light
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +47,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

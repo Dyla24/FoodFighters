@@ -27,6 +27,10 @@ ModelImporter:
     4300002: Powerups
     4300004: rubber_straps
     4300006: wheels
+    6400000: cart
+    6400002: Powerups
+    6400004: rubber_straps
+    6400006: wheels
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +59,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
