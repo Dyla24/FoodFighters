@@ -122,7 +122,7 @@ public class Charactercontroller : MonoBehaviour {
 
 
         //checks if the player is touching the ground
-        if (Physics.Raycast(transform.position, Vector3.down, 1.02f))
+		if (Physics.CheckSphere(transform.position, 0.5f))
         {
             grounded = true;
             doublejump = true;
