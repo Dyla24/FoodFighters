@@ -29,6 +29,10 @@ ModelImporter:
     4300002: Object041_MeshPart0
     4300004: Object041_MeshPart1
     4300006: Object041_MeshPart2
+    6400000: Mall_cart___01
+    6400002: Object041_MeshPart0
+    6400004: Object041_MeshPart1
+    6400006: Object041_MeshPart2
   materials:
     importMaterials: 1
     materialName: 0
@@ -57,7 +61,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

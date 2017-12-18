@@ -27,6 +27,10 @@ ModelImporter:
     4300002: nintendo_game_cude_game_case_size
     4300004: nintendo_switch
     4300006: playstation
+    6400000: nintendo_ds_games
+    6400002: nintendo_game_cude_game_case_size
+    6400004: nintendo_switch
+    6400006: playstation
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +59,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

@@ -34,6 +34,11 @@ ModelImporter:
     4300004: Rails_for_power_ups002_MeshPart2
     4300006: Rails_for_power_ups002_MeshPart3
     4300008: Rails_for_power_ups002_MeshPart4
+    6400000: Rails_for_power_ups002_MeshPart0
+    6400002: Rails_for_power_ups002_MeshPart1
+    6400004: Rails_for_power_ups002_MeshPart2
+    6400006: Rails_for_power_ups002_MeshPart3
+    6400008: Rails_for_power_ups002_MeshPart4
   materials:
     importMaterials: 1
     materialName: 0
@@ -62,7 +67,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

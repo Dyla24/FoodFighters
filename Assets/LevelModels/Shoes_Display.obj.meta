@@ -12,6 +12,7 @@ ModelImporter:
     2300000: shoe___display
     3300000: shoe___display
     4300000: shoe___display
+    6400000: shoe___display
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

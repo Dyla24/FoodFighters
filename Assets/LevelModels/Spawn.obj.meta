@@ -121,6 +121,28 @@ ModelImporter:
     4300038: test_bin001
     4300040: test_bin002
     4300042: test_bin003
+    6400000: base_LP
+    6400002: bridge_placeholder
+    6400004: ice_cream_fidge_24_MeshPart0
+    6400006: ice_cream_fidge_24_MeshPart1
+    6400008: ice_cream_fidge_24_MeshPart2
+    6400010: Line_LP
+    6400012: Line_LP002
+    6400014: Object1996_MeshPart0
+    6400016: Object1996_MeshPart1
+    6400018: Object1996_MeshPart2
+    6400020: Object1996_MeshPart3
+    6400022: Object1996_MeshPart4
+    6400024: Object1996_MeshPart5
+    6400026: Object1996_MeshPart6
+    6400028: Object1998
+    6400030: Oven
+    6400032: Oven001
+    6400034: stand_counter
+    6400036: test_bin
+    6400038: test_bin001
+    6400040: test_bin002
+    6400042: test_bin003
   materials:
     importMaterials: 1
     materialName: 0
@@ -149,7 +171,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

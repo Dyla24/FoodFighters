@@ -47,6 +47,14 @@ ModelImporter:
     4300010: Plate005
     4300012: Plate006
     4300014: Table_and_Chairs_022
+    6400000: CoffeeCup002
+    6400002: CoffeeCup003
+    6400004: Cup_Plate
+    6400006: Cup_Plate001
+    6400008: Plate003
+    6400010: Plate005
+    6400012: Plate006
+    6400014: Table_and_Chairs_022
   materials:
     importMaterials: 1
     materialName: 0
@@ -75,7 +83,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
