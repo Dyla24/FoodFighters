@@ -91,6 +91,8 @@ public class Charactercontroller : MonoBehaviour {
         myrigidbody.useGravity = true;
         myrigidbody.detectCollisions = true;
 
+		transform.GetChild(0).rotation = Quaternion.identity;
+		transform.GetChild(0).position = transform.position;
         curhealth = starthealth;
         playerSpawning.spawn(gameObject);
     }
