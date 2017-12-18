@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Settingsmanager : MonoBehaviour {
 	public static Settingsmanager settings;
@@ -13,6 +14,7 @@ public class Settingsmanager : MonoBehaviour {
 	public Resolution[] resolutions;
 	public GameObject crosshair;
 	public int[] character = new int[4];
+	public GameObject applysettings;
 
 	void Awake()
 	{
@@ -22,7 +24,12 @@ public class Settingsmanager : MonoBehaviour {
 		} else if (settings != this)
 			Destroy (gameObject);
 		gamesettings = new Gamesettings();
-
+		SceneManager.activeSceneChanged += levelloaded;
+		setupsettings ();
+		loadsettings ();
+	}
+	public void setupsettings()
+	{
 		fullscreen.onValueChanged.AddListener(delegate {fullscreenchange();});
 		quality.onValueChanged.AddListener(delegate {qualitychange();});
 		resolutiondropdown.onValueChanged.AddListener(delegate {resolutionchange();});
@@ -31,14 +38,29 @@ public class Settingsmanager : MonoBehaviour {
 		cdotsize.onValueChanged.AddListener(delegate {dotsizechange();});
 		cthickness.onValueChanged.AddListener(delegate {thicknesschange();});
 		clength.onValueChanged.AddListener(delegate {crosshairlengthchange();});
-
+		applysettings.GetComponent<Button> ().onClick.AddListener (delegate {savesettings ();});
 		resolutions = Screen.resolutions;
 		foreach (Resolution resolution in resolutions) 
 		{
 			resolutiondropdown.options.Add (new Dropdown.OptionData (resolution.ToString ()));
 		}
-
-		loadsettings ();
+	}
+	public void levelloaded(Scene a, Scene b)
+	{
+		if (b.buildIndex == 0) {
+			mainmenureferences sr = GameObject.FindGameObjectWithTag ("Canvas").GetComponent<mainmenureferences> ();
+			fullscreen = sr.fullscreen;
+			quality = sr.quality;
+			resolutiondropdown = sr.resolutiondropdown;
+			vsync = sr.vsync;
+			ccentergap = sr.ccentergap;
+			cdotsize = sr.cdotsize;
+			cthickness = sr.cthickness;
+			clength = sr.clength;
+			applysettings = sr.applysettings;
+			setupsettings ();
+			loadsettings ();
+		}
 	}
 
 	public void fullscreenchange()

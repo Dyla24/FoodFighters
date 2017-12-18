@@ -91,6 +91,8 @@ public class Charactercontroller : MonoBehaviour {
         myrigidbody.useGravity = true;
         myrigidbody.detectCollisions = true;
 
+		transform.GetChild(0).rotation = Quaternion.identity;
+		transform.GetChild(0).position = transform.position;
         curhealth = starthealth;
         playerSpawning.spawn(gameObject);
     }
@@ -122,7 +124,7 @@ public class Charactercontroller : MonoBehaviour {
 
 
         //checks if the player is touching the ground
-        if (Physics.Raycast(transform.position, Vector3.down, 1.02f))
+		if (Physics.CheckSphere(transform.position, 0.5f))
         {
             grounded = true;
             doublejump = true;
