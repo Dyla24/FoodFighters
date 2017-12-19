@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Charactercontroller : MonoBehaviour {
 	private GameObject pcamera;
     private GameObject playerhud;
+	public string HudTag;
     private GameObject uicrosshair;
     public AnimationClip deathClip;
     //GameObject spawn;
@@ -29,6 +30,9 @@ public class Charactercontroller : MonoBehaviour {
     private float speed;
     int starthealth;
 	public GameObject shoulder;
+	public float ammopercentage;
+	public float startammo;
+	GunScript gun;
 
 	void Start () 
 	{
@@ -36,10 +40,13 @@ public class Charactercontroller : MonoBehaviour {
 		nspeed = 10;
 		sspeed = nspeed * 1.5f;
 		myrigidbody = this.GetComponent<Rigidbody> ();
+		playerhud = GameObject.FindGameObjectWithTag (HudTag);
         pcamera = this.gameObject.GetComponentInChildren<Camera>().gameObject;
 		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
-        uicrosshair = GameObject.FindGameObjectWithTag("P1hud").transform.GetChild(0).gameObject;
+		uicrosshair = playerhud.transform.GetChild(0).gameObject;
         curhealth = starthealth;
+		gun = pcamera.transform.parent.GetChild (1).gameObject.GetComponent<GunScript>();
+		startammo = gun.ammo;
     }
     
 	void Update () 
@@ -75,7 +82,16 @@ public class Charactercontroller : MonoBehaviour {
 
     public void UI_Health()
     {
-        textbox.text = "Health: " + curhealth.ToString();
+		if (playerhud != null) {
+			Image himage = playerhud.transform.GetChild (2).GetComponent<Image> ();
+			float hpper = curhealth;
+			hpper = hpper / starthealth;
+			himage.fillAmount = hpper;
+			Image aimage = playerhud.transform.GetChild (3).GetComponent<Image> ();
+			ammopercentage = gun.ammo / startammo ;
+			aimage.fillAmount = ammopercentage;
+			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
+		}
     }
 
     IEnumerator respawn()
@@ -91,7 +107,7 @@ public class Charactercontroller : MonoBehaviour {
         myrigidbody.useGravity = true;
         myrigidbody.detectCollisions = true;
 
-		transform.GetChild(0).rotation = Quaternion.identity;
+		transform.GetChild(0).rotation = transform.rotation;
 		transform.GetChild(0).position = transform.position;
         curhealth = starthealth;
         playerSpawning.spawn(gameObject);
