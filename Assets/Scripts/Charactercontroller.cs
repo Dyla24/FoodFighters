@@ -10,19 +10,20 @@ public class Charactercontroller : MonoBehaviour {
     public AnimationClip deathClip;
     //GameObject spawn;
 	Vector3 movementh, movementv;
-	Vector3 movement;
+	public Vector3 movement;
     private Animator animator;
 	private Vector3 shootdirection;
 	private Rigidbody myrigidbody;
 	public string controllerHorizontal, controllerVertical, controllerHorizontalRight, controllerVerticalRight, controllerJump, controllerLeftClick, controllerMap;
 	public string controllerEscape;
-	private float moveh, movev, vrotation;
+	public float moveh, movev, vrotation;
     public float vrangeu = 40f, vranged = 20f;
 	private float nspeed, sspeed;
 	private bool sprint;
 	private int curhealth;
-    private bool grounded;
+	public bool grounded;
     private bool doublejump, jumpkey;
+	[Range (1,10)]
 	public float jumpheight;
     private bool jump;
     public int bulletStrength;
@@ -67,8 +68,12 @@ public class Charactercontroller : MonoBehaviour {
 		}
 		if (jump) 
 		{
-            //myrigidbody.AddForce(Vector3.up * jumpheight, ForceMode.VelocityChange);
+			myrigidbody.velocity += jumpheight * Vector3.up;
+			print (myrigidbody.velocity);
 			jump = false;
+		}
+		if (myrigidbody.velocity.y < 0) {
+			myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
 		}
 	}
 
@@ -140,7 +145,7 @@ public class Charactercontroller : MonoBehaviour {
 
 
         //checks if the player is touching the ground
-		if (Physics.CheckSphere(transform.position, 0.5f))
+		if (Physics.CheckSphere(transform.position, 0.06f, 1 << 8))
         {
             grounded = true;
             doublejump = true;
