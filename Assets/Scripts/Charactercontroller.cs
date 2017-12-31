@@ -5,23 +5,25 @@ using UnityEngine.UI;
 public class Charactercontroller : MonoBehaviour {
 	private GameObject pcamera;
     private GameObject playerhud;
+	public string HudTag;
     private GameObject uicrosshair;
     public AnimationClip deathClip;
     //GameObject spawn;
 	Vector3 movementh, movementv;
-	Vector3 movement;
+	public Vector3 movement;
     private Animator animator;
 	private Vector3 shootdirection;
 	private Rigidbody myrigidbody;
 	public string controllerHorizontal, controllerVertical, controllerHorizontalRight, controllerVerticalRight, controllerJump, controllerLeftClick, controllerMap;
 	public string controllerEscape;
-	private float moveh, movev, vrotation;
+	public float moveh, movev, vrotation;
     public float vrangeu = 40f, vranged = 20f;
 	private float nspeed, sspeed;
 	private bool sprint;
 	private int curhealth;
-    private bool grounded;
+	public bool grounded;
     private bool doublejump, jumpkey;
+	[Range (1,10)]
 	public float jumpheight;
     private bool jump;
     public int bulletStrength;
@@ -29,6 +31,9 @@ public class Charactercontroller : MonoBehaviour {
     private float speed;
     int starthealth;
 	public GameObject shoulder;
+	public float ammopercentage;
+	public float startammo;
+	GunScript gun;
 
 	void Start () 
 	{
@@ -36,10 +41,13 @@ public class Charactercontroller : MonoBehaviour {
 		nspeed = 10;
 		sspeed = nspeed * 1.5f;
 		myrigidbody = this.GetComponent<Rigidbody> ();
+		playerhud = GameObject.FindGameObjectWithTag (HudTag);
         pcamera = this.gameObject.GetComponentInChildren<Camera>().gameObject;
 		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
-        uicrosshair = GameObject.FindGameObjectWithTag("P1hud").transform.GetChild(0).gameObject;
+		uicrosshair = playerhud.transform.GetChild(0).gameObject;
         curhealth = starthealth;
+		gun = pcamera.transform.parent.GetChild (1).gameObject.GetComponent<GunScript>();
+		startammo = gun.ammo;
     }
     
 	void Update () 
@@ -60,8 +68,12 @@ public class Charactercontroller : MonoBehaviour {
 		}
 		if (jump) 
 		{
-            //myrigidbody.AddForce(Vector3.up * jumpheight, ForceMode.VelocityChange);
+			myrigidbody.velocity += jumpheight * Vector3.up;
+			print (myrigidbody.velocity);
 			jump = false;
+		}
+		if (myrigidbody.velocity.y < 0) {
+			myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
 		}
 	}
 
@@ -75,7 +87,16 @@ public class Charactercontroller : MonoBehaviour {
 
     public void UI_Health()
     {
-        textbox.text = "Health: " + curhealth.ToString();
+		if (playerhud != null) {
+			Image himage = playerhud.transform.GetChild (2).GetComponent<Image> ();
+			float hpper = curhealth;
+			hpper = hpper / starthealth;
+			himage.fillAmount = hpper;
+			Image aimage = playerhud.transform.GetChild (3).GetComponent<Image> ();
+			ammopercentage = gun.ammo / startammo ;
+			aimage.fillAmount = ammopercentage;
+			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
+		}
     }
 
     IEnumerator respawn()
@@ -91,7 +112,7 @@ public class Charactercontroller : MonoBehaviour {
         myrigidbody.useGravity = true;
         myrigidbody.detectCollisions = true;
 
-		transform.GetChild(0).rotation = Quaternion.identity;
+		transform.GetChild(0).rotation = transform.rotation;
 		transform.GetChild(0).position = transform.position;
         curhealth = starthealth;
         playerSpawning.spawn(gameObject);
@@ -124,7 +145,7 @@ public class Charactercontroller : MonoBehaviour {
 
 
         //checks if the player is touching the ground
-		if (Physics.CheckSphere(transform.position, 0.5f))
+		if (Physics.CheckSphere(transform.position, 0.06f, 1 << 8))
         {
             grounded = true;
             doublejump = true;
