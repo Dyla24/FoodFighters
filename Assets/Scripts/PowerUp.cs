@@ -27,22 +27,22 @@ public class PowerUp : MonoBehaviour
 	void Update ()
     {
        
-        /*if (PU_active == true)
+        if (PU_active == true)
         {
             timer -= Time.deltaTime;
             print(timer);
             if (timer < 0)
             {
                 PU_active = false;
-                if (gameObject.CompareTag("Healthy"))
+               /* if (gameObject.CompareTag("Healthy"))
                 {
                     bob.nspeed -= speedBoost;
                 }
                 else if (gameObject.CompareTag("Speedy"))
                 {
                     bob.curhealth -= healthBoost;
-                }
-                else if (gameObject.CompareTag("Hurty"))
+                }*/
+                if (gameObject.CompareTag("Hurty"))
                 {
                     bob.bulletStrength -= damageboost;
                 }
@@ -50,7 +50,7 @@ public class PowerUp : MonoBehaviour
 
             }
 		
-        }*/
+        }
         
 	}
 

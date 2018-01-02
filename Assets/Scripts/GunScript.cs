@@ -41,7 +41,7 @@ public class GunScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Ammo_UI();
+        //Ammo_UI();
         float primaryAttack = Input.GetAxis(fireController);
         bool reload = Input.GetButtonDown(reloadController);
         if (primaryAttack <= -0.37f)
