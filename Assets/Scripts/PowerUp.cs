@@ -30,11 +30,11 @@ public class PowerUp : MonoBehaviour
         if (PU_active == true)
         {
             timer -= Time.deltaTime;
-            print(timer);
+           // print(timer);
             if (timer < 0)
             {
                 PU_active = false;
-               /* if (gameObject.CompareTag("Healthy"))
+               /*if (gameObject.CompareTag("Healthy"))
                 {
                     bob.nspeed -= speedBoost;
                 }
@@ -44,6 +44,7 @@ public class PowerUp : MonoBehaviour
                 }*/
                 if (gameObject.CompareTag("Hurty"))
                 {
+                    Debug.Log("Running");
                     bob.bulletStrength -= damageboost;
                 }
 
@@ -56,30 +57,40 @@ public class PowerUp : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("Healthy"))
+
+        //bob = other.transform.getcomponent(charectorcontroller);
+        Charactercontroller bobtemp = other.transform.GetComponent<Charactercontroller>();
+
+        if (other.gameObject.CompareTag("Player") && bobtemp != null)
         {
-            PU_active = true;
-            PU_Health();
-            b_collider.enabled = false;
-            b_rend.enabled = false;
-            b_part_rend.enabled = false;
+            bob = bobtemp;
+
+            if (gameObject.CompareTag("Healthy"))
+            {
+                PU_active = true;
+                PU_Health();
+                b_collider.enabled = false;
+                b_rend.enabled = false;
+                b_part_rend.enabled = false;
+            }
+            if (gameObject.CompareTag("Speedy"))
+            {
+                PU_active = true;
+                PU_speed();
+                b_collider.enabled = false;
+                b_rend.enabled = false;
+                b_part_rend.enabled = false;
+            }
+            if (gameObject.CompareTag("Hurty"))
+            {
+                PU_active = true;
+                PU_Hurty_Ammo();
+                b_collider.enabled = false;
+                b_rend.enabled = false;
+                b_part_rend.enabled = false;
+            }
         }
-        if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("Speedy"))
-        {
-            PU_active = true;
-            PU_speed();
-            b_collider.enabled = false;
-            b_rend.enabled = false;
-            b_part_rend.enabled = false;
-        }
-        if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("Hurty"))
-        {
-            PU_active = true;
-            PU_Hurty_Ammo();
-            b_collider.enabled = false;
-            b_rend.enabled = false;
-            b_part_rend.enabled = false;
-        }
+        
 
     }
 
