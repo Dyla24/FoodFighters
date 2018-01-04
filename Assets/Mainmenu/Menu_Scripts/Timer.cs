@@ -9,13 +9,20 @@ public class Timer : MonoBehaviour {
 	public float starttime;
 	public float minutes, seconds, miliseconds;
     public bool timer;
+	public float ftime = 0;
 
 	// Use this for initialization
 	void Start () 
 	{
+		
+	}
+
+	public void starttimer()
+	{
 		minutes = starttime;
+		starttime = 0;
 		text.text = string.Format("{0}:{1}:{2}", minutes, seconds, (int)miliseconds);
-        timer = true;
+		timer = true;
 	}
 	
 	// Update is called once per frame
@@ -51,14 +58,21 @@ public class Timer : MonoBehaviour {
             }
         }
         
-        if (!timer)
+		if (!timer && starttime == 0)
         {
-            Time.timeScale = Mathf.Lerp(1, 0, 0.7f);
+			Time.timeScale = Mathf.Lerp(1, 0, ftime);
+			ftime += Time.deltaTime/2;
+			print (Time.timeScale);
             if (Time.timeScale <= 0.3f)
             {
                 Time.timeScale = 1;
-                SceneManager.LoadScene(0);
+				Invoke ("LS", 2);
             }
         }
 	}
+	void LS()
+	{
+		SceneManager.LoadScene(0);
+	}
+
 }
