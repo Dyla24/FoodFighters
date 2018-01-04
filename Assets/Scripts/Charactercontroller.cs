@@ -34,6 +34,8 @@ public class Charactercontroller : MonoBehaviour {
 	public float ammopercentage;
 	public float startammo;
 	GunScript gun;
+	bool tr;
+	public GameObject timer;
 
 	void Start () 
 	{
@@ -48,16 +50,24 @@ public class Charactercontroller : MonoBehaviour {
         curhealth = starthealth;
 		gun = pcamera.transform.parent.GetChild (1).gameObject.GetComponent<GunScript>();
 		startammo = gun.ammo;
+		timer = GameObject.FindGameObjectWithTag ("Timer");
     }
     
 	void Update () 
 	{
+		if (tr == false) 
+		{
+			tr = timer.GetComponent<Timer> ().timer;
+			print (tr);
+		}
         if(curhealth <= 0)
         {
             StartCoroutine(respawn());
         }
         UI_Health();
-        character_movement();
+		if (tr) {
+			character_movement ();
+		}
 	}
 
 	void FixedUpdate()
