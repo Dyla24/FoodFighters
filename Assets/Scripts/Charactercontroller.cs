@@ -58,7 +58,6 @@ public class Charactercontroller : MonoBehaviour {
 		if (tr == false) 
 		{
 			tr = timer.GetComponent<Timer> ().timer;
-			print (tr);
 		}
         if(curhealth <= 0)
         {
