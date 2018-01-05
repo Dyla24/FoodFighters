@@ -46,7 +46,6 @@ public class GunScript : MonoBehaviour {
         bool reload = Input.GetButtonDown(reloadController);
         if (primaryAttack <= -0.37f)
         {
-            Debug.Log(primaryAttack);
             if (ammo <= 0)
             {
                 reloadcheck = true;
