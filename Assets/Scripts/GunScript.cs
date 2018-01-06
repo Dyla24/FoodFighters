@@ -5,12 +5,8 @@ using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour {
 
-    public GameObject gunModel;
-    public Animation gunAnim;
     public GameObject bulletPrefab;
     public Rigidbody bulletRB;
-    public Shader gunShader;
-    public Texture gunText;
     public Color gunColor;
     public float firerate;
     public float bulletspeed;
@@ -23,18 +19,13 @@ public class GunScript : MonoBehaviour {
     public float shotspershot = 1;
     public Text textbox;
 	GameObject pewpew;
+    public Animator animator;
 
 
     // Use this for initialization
     void Start ()
     {
         baseammo = ammo;
-
-        Renderer rend = GetComponent<Renderer>();
-        rend.material = new Material(gunShader);
-        rend.material.mainTexture = gunText;
-        rend.material.color = gunColor;
-        
 
     }
 	
@@ -49,10 +40,12 @@ public class GunScript : MonoBehaviour {
             if (ammo <= 0)
             {
                 reloadcheck = true;
+                animator.SetBool("IsShooting", false);
             }
             else
             {
                 fire();
+                reloadcheck = true;
 
             }
         }
@@ -75,21 +68,29 @@ public class GunScript : MonoBehaviour {
         {
             ammo -= shotspershot;
 
-			pewpew = (GameObject)Instantiate (bulletPrefab, transform.GetChild (0).transform.position, Quaternion.identity);
-			Ray ray = transform.parent.GetChild (0).GetComponent<Camera> ().ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0));
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit)) {
-				pewpew.transform.LookAt (hit.point);
-				pewpew.GetComponent<Rigidbody> ().velocity = pewpew.transform.forward * -bulletspeed;
-			} else {
-				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
-			}
+            pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
+            Ray ray = transform.parent.GetChild(0).GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                pewpew.transform.LookAt(hit.point);
+                pewpew.GetComponent<Rigidbody>().velocity = pewpew.transform.forward * -bulletspeed;
+            }
+            else
+            {
+                pewpew.GetComponent<Rigidbody>().velocity = ray.direction * -bulletspeed;
+            }
 
             //Rigidbody BulletCreate = Instantiate(bulletRB, transform.GetChild(0).transform.position, transform.GetChild(0).transform.rotation);
 
             //BulletCreate.velocity = transform.TransformDirection(new Vector3(bulletspeed, 0, 0));
 
             lastShot = Time.time;
+            animator.SetBool("IsShooting", true);
+        }
+        else
+        {
+            animator.SetBool("IsShooting", false);
         }
 
     }
