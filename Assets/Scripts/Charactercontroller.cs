@@ -23,6 +23,7 @@ public class Charactercontroller : MonoBehaviour {
     private int curhealth;
     public bool grounded;
     private bool doublejump, jumpkey;
+    public AnimationClip jumpclip;
     [Range(1, 10)]
     public float jumpheight;
     private bool jump;
@@ -47,7 +48,7 @@ public class Charactercontroller : MonoBehaviour {
         kills = 0; //new
         lasthitby = "N/A"; // new
         starthealth = 10;
-        nspeed = 10;
+        nspeed = 5;
         sspeed = nspeed * 1.5f;
         myrigidbody = this.GetComponent<Rigidbody>();
         playerhud = GameObject.FindGameObjectWithTag(HudTag);
@@ -69,17 +70,7 @@ public class Charactercontroller : MonoBehaviour {
                 tr = timer.GetComponent<Timer>().timer;
             }
         if (curhealth <= 0)
-    
-	void Update () 
-	{
-        if (curhealth <= 0)
-		if (tr == false) 
-		{
-			tr = timer.GetComponent<Timer> ().timer;
-		}
-        if(curhealth <= 0)
         {
-
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
             if (killconfirm == true)
             {
@@ -111,13 +102,15 @@ public class Charactercontroller : MonoBehaviour {
 		}
 		if (jump) 
 		{
-			myrigidbody.velocity += jumpheight * Vector3.up;
-			print (myrigidbody.velocity);
-			jump = false;
+            myrigidbody.velocity += jumpheight * Vector3.up;
+            animator.SetBool("IsJumping", true);
+            jump = false;
 		}
-		if (myrigidbody.velocity.y < 0) {
-			myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
-		}
+        if (myrigidbody.velocity.y < 0)
+        {
+            myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
+        }
+
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -219,6 +212,7 @@ public class Charactercontroller : MonoBehaviour {
         //triggers jump on the next psysics update
         if (jumpkey == true && grounded == true)
         {
+            StartCoroutine(Jumping());
             jump = true;
         }
         if (jumpkey == true && grounded == false && doublejump == true)
@@ -226,6 +220,8 @@ public class Charactercontroller : MonoBehaviour {
             jump = true;
             doublejump = false;
         }
+
+
         //left/right rotation
         shootdirection = new Vector2(0f, Input.GetAxisRaw(controllerHorizontalRight));
         if (shootdirection.sqrMagnitude >= 0.2f)
@@ -255,5 +251,14 @@ public class Charactercontroller : MonoBehaviour {
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+    }
+
+    IEnumerator Jumping()
+    {
+        animator.SetBool("IsJumping", true);
+
+        yield return new WaitForSeconds(jumpclip.length);
+
+        animator.SetBool("IsJumping", false);
     }
 }
