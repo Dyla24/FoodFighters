@@ -69,7 +69,7 @@ public class Timer : MonoBehaviour {
             if (Time.timeScale <= 0.3f)
             {
                 Time.timeScale = 1;
-                if (scoredisplayed = true)
+                if (scoredisplayed == true)
                 {
                     Invoke("LS", 2);
                     scoredisplayed = !scoredisplayed;
