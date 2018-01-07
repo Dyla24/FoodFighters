@@ -34,10 +34,17 @@ public class Charactercontroller : MonoBehaviour {
 	public float ammopercentage;
 	public float startammo;
 	GunScript gun;
+    string lasthitby; // new
+    int kills; //new
+    public GameObject killer; //new
+    bool killconfirm; //new
 
-	void Start () 
+    void Start () 
 	{
-		starthealth = 10;
+        killconfirm = true; //new
+        kills = 0; //new
+        lasthitby = "N/A"; // new
+        starthealth = 10;
 		nspeed = 10;
 		sspeed = nspeed * 1.5f;
 		myrigidbody = this.GetComponent<Rigidbody> ();
@@ -52,13 +59,22 @@ public class Charactercontroller : MonoBehaviour {
     
 	void Update () 
 	{
-        if(curhealth <= 0)
+        if (curhealth <= 0)
         {
+
+            killer = GameObject.FindGameObjectWithTag(lasthitby); // new
+            if (killconfirm == true)
+            {
+                killer.GetComponentInChildren<Charactercontroller>().Addkill(); // new
+                killconfirm = false;
+            }
             StartCoroutine(respawn());
+
+
         }
         UI_Health();
         character_movement();
-	}
+    }
 
 	void FixedUpdate()
 	{
@@ -79,11 +95,14 @@ public class Charactercontroller : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "Bullet") 
-		{
+        if (collision.gameObject.tag == "Bullet")
+        {
             curhealth = curhealth - bulletStrength;
-		}
-	}
+            lasthitby = collision.gameObject.GetComponent<KillBullet>().Getfiretag(); // new
+
+            collision.gameObject.SetActive(false);
+        }
+    }
 
     public void UI_Health()
     {
@@ -98,6 +117,29 @@ public class Charactercontroller : MonoBehaviour {
 			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
 		}
     }
+
+
+
+
+
+
+    public int Getkills() //new
+    {
+        return kills;
+    }
+
+    public void Addkill() //new
+    {
+        kills += 1;
+    }
+
+
+
+
+
+
+
+
 
     IEnumerator respawn()
     {
@@ -115,6 +157,7 @@ public class Charactercontroller : MonoBehaviour {
 		transform.GetChild(0).rotation = transform.rotation;
 		transform.GetChild(0).position = transform.position;
         curhealth = starthealth;
+        killconfirm = true;
         playerSpawning.spawn(gameObject);
     }
 

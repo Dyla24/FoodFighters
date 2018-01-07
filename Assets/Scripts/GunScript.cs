@@ -23,7 +23,7 @@ public class GunScript : MonoBehaviour {
     public float shotspershot = 1;
     public Text textbox;
 	GameObject pewpew;
-
+    string playertag; // new
 
     // Use this for initialization
     void Start ()
@@ -34,8 +34,8 @@ public class GunScript : MonoBehaviour {
         rend.material = new Material(gunShader);
         rend.material.mainTexture = gunText;
         rend.material.color = gunColor;
-        
 
+        if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
     }
 	
 	// Update is called once per frame
@@ -76,19 +76,21 @@ public class GunScript : MonoBehaviour {
         {
             ammo -= shotspershot;
 
-			pewpew = (GameObject)Instantiate (bulletPrefab, transform.GetChild (0).transform.position, Quaternion.identity);
-			Ray ray = transform.parent.GetChild (0).GetComponent<Camera> ().ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0));
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit)) {
-				pewpew.transform.LookAt (hit.point);
-				pewpew.GetComponent<Rigidbody> ().velocity = pewpew.transform.forward * -bulletspeed;
-			} else {
-				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
-			}
+            pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
 
-            //Rigidbody BulletCreate = Instantiate(bulletRB, transform.GetChild(0).transform.position, transform.GetChild(0).transform.rotation);
+            pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
 
-            //BulletCreate.velocity = transform.TransformDirection(new Vector3(bulletspeed, 0, 0));
+            Ray ray = transform.parent.GetChild(0).GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                pewpew.transform.LookAt(hit.point);
+                pewpew.GetComponent<Rigidbody>().velocity = pewpew.transform.forward * -bulletspeed;
+            }
+            else
+            {
+                pewpew.GetComponent<Rigidbody>().velocity = ray.direction * -bulletspeed;
+            }
 
             lastShot = Time.time;
         }
