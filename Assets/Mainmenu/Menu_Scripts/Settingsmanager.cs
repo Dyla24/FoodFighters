@@ -57,6 +57,7 @@ public class Settingsmanager : MonoBehaviour {
 			cdotsize = sr.cdotsize;
 			cthickness = sr.cthickness;
 			clength = sr.clength;
+			crosshair = sr.crosshair;
 			applysettings = sr.applysettings;
 			setupsettings ();
 			loadsettings ();

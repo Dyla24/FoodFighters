@@ -10,6 +10,8 @@ public class enablescript : MonoBehaviour {
 	public void OnEnable()
 	{
         EventSystem.current.SetSelectedGameObject(activebutton);
-        activebutton.GetComponent<Button>().OnSelect(null);
+		if (activebutton.GetComponent<Button> () != null) {
+			activebutton.GetComponent<Button> ().OnSelect (null);
+		}
     }
 }
