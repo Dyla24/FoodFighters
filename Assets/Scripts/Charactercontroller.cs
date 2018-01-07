@@ -58,23 +58,15 @@ public class Charactercontroller : MonoBehaviour {
         gun = pcamera.transform.parent.GetChild(1).gameObject.GetComponent<GunScript>();
         startammo = gun.ammo;
         timer = GameObject.FindGameObjectWithTag("Timer");
+		tr = false;
     }
 
-    void Update()
-    {
-
-        if (curhealth <= 0)
-            if (tr == false)
-            {
-                tr = timer.GetComponent<Timer>().timer;
-            }
-        if (curhealth <= 0)
     
 	void Update () 
 	{
-        if (curhealth <= 0)
-		if (tr == false) 
+		if (!tr) 
 		{
+			print ("true");
 			tr = timer.GetComponent<Timer> ().timer;
 		}
         if(curhealth <= 0)
@@ -89,16 +81,8 @@ public class Charactercontroller : MonoBehaviour {
             StartCoroutine(respawn());
         }
         UI_Health();
-        character_movement();
-
         if (tr)
-        {
-
-            character_movement();
-        }
-        if (tr)
-        {
-
+       	{
             character_movement();
         }
     }
@@ -134,11 +118,11 @@ public class Charactercontroller : MonoBehaviour {
     public void UI_Health()
     {
 		if (playerhud != null) {
-			Image himage = playerhud.transform.GetChild (2).GetComponent<Image> ();
+			Image himage = playerhud.transform.GetChild (1).GetChild(0).GetComponent<Image> ();
 			float hpper = curhealth;
 			hpper = hpper / starthealth;
 			himage.fillAmount = hpper;
-			Image aimage = playerhud.transform.GetChild (3).GetComponent<Image> ();
+			Image aimage = playerhud.transform.GetChild (2).GetComponent<Image> ();
 			ammopercentage = gun.ammo / startammo ;
 			aimage.fillAmount = ammopercentage;
 			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
@@ -184,7 +168,7 @@ public class Charactercontroller : MonoBehaviour {
     {
         //sets input direction and jump
         moveh = Input.GetAxisRaw(controllerHorizontal);
-        movev = -Input.GetAxisRaw(controllerVertical);
+        movev = Input.GetAxisRaw(controllerVertical);
         movementh = transform.right * moveh;
         movementv = transform.forward * movev;
         jumpkey = Input.GetButtonDown(controllerJump);
@@ -242,18 +226,18 @@ public class Charactercontroller : MonoBehaviour {
         {
             if (Input.GetButtonDown(controllerMap))
             {
-                playerhud.SetActive(true);
+				playerhud.transform.GetChild(3).gameObject.SetActive(true);
                 uicrosshair.SetActive(false);
             }
             else if (Input.GetButtonUp(controllerMap))
             {
-                playerhud.SetActive(false);
+				playerhud.transform.GetChild(3).gameObject.SetActive(false);
                 uicrosshair.SetActive(true);
             }
         }
         if (Input.GetButton(controllerMap))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+           // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 }
