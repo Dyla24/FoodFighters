@@ -5,13 +5,9 @@ using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour {
 
-    public GameObject gunModel;
-    public Animation gunAnim;
+    public AnimationClip gunAnim;
     public GameObject bulletPrefab;
     public Rigidbody bulletRB;
-    public Shader gunShader;
-    public Texture gunText;
-    public Color gunColor;
     public float firerate;
     public float bulletspeed;
     private float lastShot = 0.0f;
@@ -29,10 +25,6 @@ public class GunScript : MonoBehaviour {
     void Start ()
     {
         baseammo = ammo;
-        Renderer rend = GetComponent<Renderer>();
-        rend.material = new Material(gunShader);
-        rend.material.mainTexture = gunText;
-        rend.material.color = gunColor;
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
 }
@@ -63,11 +55,12 @@ public class GunScript : MonoBehaviour {
 
         if(reloadcheck == true)
         {
-             if (reload == true)
-             {
+            if (reload == true)
+            {
                 ammo = baseammo;
+                StartCoroutine(Reloading());
                 reloadcheck = false;
-             }
+            }
 
         }
 		
@@ -100,5 +93,14 @@ public class GunScript : MonoBehaviour {
         textbox.text = "Ammo: " + ammo.ToString();
     }
 
-    
+    IEnumerator Reloading()
+    {
+        animator.SetBool("IsReloading", true);
+
+        yield return new WaitForSeconds(gunAnim.length);
+
+        animator.SetBool("IsReloading", false);
+    }
+
+
 }
