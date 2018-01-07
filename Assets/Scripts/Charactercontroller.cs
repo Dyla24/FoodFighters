@@ -8,7 +8,6 @@ public class Charactercontroller : MonoBehaviour {
 	public string HudTag;
     private GameObject uicrosshair;
     public AnimationClip deathClip;
-    //GameObject spawn;
 	Vector3 movementh, movementv;
 	public Vector3 movement;
     private Animator animator;
@@ -34,10 +33,15 @@ public class Charactercontroller : MonoBehaviour {
 	public float ammopercentage;
 	public float startammo;
 	GunScript gun;
+<<<<<<< HEAD
     string lasthitby; // new
     int kills; //new
     public GameObject killer; //new
     bool killconfirm; //new
+=======
+	bool tr;
+	public GameObject timer;
+>>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
 
     void Start () 
 	{
@@ -55,11 +59,20 @@ public class Charactercontroller : MonoBehaviour {
         curhealth = starthealth;
 		gun = pcamera.transform.parent.GetChild (1).gameObject.GetComponent<GunScript>();
 		startammo = gun.ammo;
+		timer = GameObject.FindGameObjectWithTag ("Timer");
     }
     
 	void Update () 
 	{
+<<<<<<< HEAD
         if (curhealth <= 0)
+=======
+		if (tr == false) 
+		{
+			tr = timer.GetComponent<Timer> ().timer;
+		}
+        if(curhealth <= 0)
+>>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
         {
 
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
@@ -73,8 +86,15 @@ public class Charactercontroller : MonoBehaviour {
 
         }
         UI_Health();
+<<<<<<< HEAD
         character_movement();
     }
+=======
+		if (tr) {
+			character_movement ();
+		}
+	}
+>>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
 
 	void FixedUpdate()
 	{
@@ -87,6 +107,7 @@ public class Charactercontroller : MonoBehaviour {
 			myrigidbody.velocity += jumpheight * Vector3.up;
 			print (myrigidbody.velocity);
 			jump = false;
+            //animator.SetBool("IsJumping", true);
 		}
 		if (myrigidbody.velocity.y < 0) {
 			myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
