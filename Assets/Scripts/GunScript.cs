@@ -25,19 +25,16 @@ public class GunScript : MonoBehaviour {
 	GameObject pewpew;
     string playertag; // new
     public Animator animator;
-
     // Use this for initialization
     void Start ()
     {
         baseammo = ammo;
-
         Renderer rend = GetComponent<Renderer>();
         rend.material = new Material(gunShader);
         rend.material.mainTexture = gunText;
         rend.material.color = gunColor;
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
-    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -56,7 +53,6 @@ public class GunScript : MonoBehaviour {
                 fire();
                 animator.SetBool("IsShooting", true);
                 reloadcheck = true;
-
             }
         }
         else
