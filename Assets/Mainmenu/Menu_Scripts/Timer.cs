@@ -10,9 +10,8 @@ public class Timer : MonoBehaviour {
 	public float minutes, seconds, miliseconds;
     public bool timer;
 	public float ftime = 0;
-
-
     private bool scoredisplayed = true;
+	public GameObject Results;
 
 	// Use this for initialization
 	void Start () 
@@ -78,9 +77,11 @@ public class Timer : MonoBehaviour {
 	}
 	void LS()
 	{
-        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores(); // new
+		Time.timeScale = 0;
+		Results.SetActive (true);
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores();
 
-        Time.timeScale = 0;
+        
     }
 
 }
