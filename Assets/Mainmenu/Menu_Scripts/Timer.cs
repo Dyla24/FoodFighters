@@ -65,7 +65,6 @@ public class Timer : MonoBehaviour {
         {
 			Time.timeScale = Mathf.Lerp(1, 0, ftime);
 			ftime += Time.deltaTime/2;
-			print (Time.timeScale);
             if (Time.timeScale <= 0.3f)
             {
                 Time.timeScale = 1;
