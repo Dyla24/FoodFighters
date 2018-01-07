@@ -30,10 +30,10 @@ public class Charactercontroller : MonoBehaviour {
     public Text textbox;
     private float speed;
     int starthealth;
-    public GameObject shoulder;
-    public float ammopercentage;
-    public float startammo;
-    GunScript gun;
+	public GameObject shoulder;
+	public float ammopercentage;
+	public float startammo;
+	GunScript gun;
     string lasthitby; // new
     int kills; //new
     public GameObject killer; //new
@@ -69,6 +69,15 @@ public class Charactercontroller : MonoBehaviour {
                 tr = timer.GetComponent<Timer>().timer;
             }
         if (curhealth <= 0)
+    
+	void Update () 
+	{
+        if (curhealth <= 0)
+		if (tr == false) 
+		{
+			tr = timer.GetComponent<Timer> ().timer;
+		}
+        if(curhealth <= 0)
         {
 
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
@@ -78,8 +87,6 @@ public class Charactercontroller : MonoBehaviour {
                 killconfirm = false;
             }
             StartCoroutine(respawn());
-
-
         }
         UI_Health();
         character_movement();
@@ -152,14 +159,6 @@ public class Charactercontroller : MonoBehaviour {
     {
         kills += 1;
     }
-
-
-
-
-
-
-
-
 
     IEnumerator respawn()
     {
