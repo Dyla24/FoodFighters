@@ -63,12 +63,10 @@ public class Charactercontroller : MonoBehaviour {
 
     void Update()
     {
-
-        if (curhealth <= 0)
-            if (tr == false)
-            {
-                tr = timer.GetComponent<Timer>().timer;
-            }
+		if (tr == false)
+		{
+			tr = timer.GetComponent<Timer>().timer;
+		}
         if (curhealth <= 0)
         {
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
@@ -80,13 +78,6 @@ public class Charactercontroller : MonoBehaviour {
             StartCoroutine(respawn());
         }
         UI_Health();
-        character_movement();
-
-        if (tr)
-        {
-
-            character_movement();
-        }
         if (tr)
         {
 
@@ -127,11 +118,11 @@ public class Charactercontroller : MonoBehaviour {
     public void UI_Health()
     {
 		if (playerhud != null) {
-			Image himage = playerhud.transform.GetChild (2).GetComponent<Image> ();
+			Image himage = playerhud.transform.GetChild (1).GetChild(0).GetComponent<Image> ();
 			float hpper = curhealth;
 			hpper = hpper / starthealth;
 			himage.fillAmount = hpper;
-			Image aimage = playerhud.transform.GetChild (3).GetComponent<Image> ();
+			Image aimage = playerhud.transform.GetChild (2).GetComponent<Image> ();
 			ammopercentage = gun.ammo / startammo ;
 			aimage.fillAmount = ammopercentage;
 			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
@@ -177,7 +168,7 @@ public class Charactercontroller : MonoBehaviour {
     {
         //sets input direction and jump
         moveh = Input.GetAxisRaw(controllerHorizontal);
-        movev = -Input.GetAxisRaw(controllerVertical);
+        movev = Input.GetAxisRaw(controllerVertical);
         movementh = transform.right * moveh;
         movementv = transform.forward * movev;
         jumpkey = Input.GetButtonDown(controllerJump);
