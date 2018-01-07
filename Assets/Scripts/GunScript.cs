@@ -35,7 +35,6 @@ public class GunScript : MonoBehaviour {
         rend.material.color = gunColor;
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
-}
 	
 	// Update is called once per frame
 	void Update ()
@@ -78,7 +77,7 @@ public class GunScript : MonoBehaviour {
         if (Time.time > firerate + lastShot)
         {
             ammo -= shotspershot;
-			pewpew = (GameObject)Instantiate (bulletPrefab, transform.GetChild (0).transform.position, Quaternion.identity);
+            pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
 			Ray ray = transform.parent.GetChild (0).GetComponent<Camera> ().ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0));
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit)) {
