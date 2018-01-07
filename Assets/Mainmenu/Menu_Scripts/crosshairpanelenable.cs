@@ -15,7 +15,7 @@ public class crosshairpanelenable : MonoBehaviour {
     public void OnEnable()
     {
         EventSystem.current.SetSelectedGameObject(enablebutton);
-        enablebutton.GetComponent<Button>().OnSelect(null);
+		enablebutton.GetComponent<Slider>().OnSelect(null);
         centergap.value = crosshair.GetComponent<crosshairmanager>().ccentergap;
         dotsize.value = crosshair.GetComponent<crosshairmanager>().cdotsize;
         thickness.value = crosshair.GetComponent<crosshairmanager>().cthickness;

@@ -10,9 +10,8 @@ public class Timer : MonoBehaviour {
 	public float minutes, seconds, miliseconds;
     public bool timer;
 	public float ftime = 0;
-
-
     private bool scoredisplayed = true;
+	public GameObject results;
 
 	// Use this for initialization
 	void Start () 
@@ -40,9 +39,9 @@ public class Timer : MonoBehaviour {
             if (miliseconds <= 0)
             {
                 if (seconds <= 0)
-                {
+				{
+					seconds = 59;
                     minutes--;
-                    seconds = 59;
                 }
                 else if (seconds >= 0)
                 {
@@ -61,17 +60,17 @@ public class Timer : MonoBehaviour {
             }
         }
         
-		if (!timer && starttime == 0)
+		if (!timer && minutes == 0 && seconds == 0)
         {
 			Time.timeScale = Mathf.Lerp(1, 0, ftime);
 			ftime += Time.deltaTime/2;
-			print (Time.timeScale);
+			print ("finish");
             if (Time.timeScale <= 0.3f)
             {
                 Time.timeScale = 1;
                 if (scoredisplayed == true)
                 {
-                    Invoke("LS", 2);
+                    Invoke("LS", 1);
                     scoredisplayed = !scoredisplayed;
                 }
             }
@@ -79,9 +78,10 @@ public class Timer : MonoBehaviour {
 	}
 	void LS()
 	{
-        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores(); // new
+		Time.timeScale = 0;
+		results.SetActive (true);
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores();
 
-        Time.timeScale = 0;
     }
 
 }

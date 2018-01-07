@@ -24,10 +24,10 @@ public class crosshairmanager : MonoBehaviour {
 
 	public void findsetting()
 	{
-		if (GameObject.FindGameObjectWithTag ("settings") == null) {
+		if (Settingsmanager.settings == null) {
 			gamesettings = new Gamesettings ();
-		} else if (GameObject.FindGameObjectWithTag ("settings") != null) {
-			gamesettings = GameObject.FindGameObjectWithTag ("settings").GetComponent<Settingsmanager> ().gamesettings;
+		} else if (Settingsmanager.settings != null) {
+			gamesettings = Settingsmanager.settings.gamesettings;
 		}
 	}
 
