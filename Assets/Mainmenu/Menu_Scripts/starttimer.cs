@@ -6,8 +6,8 @@ public class starttimer : MonoBehaviour {
 	public GameObject timer;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
 		
 	}
 	

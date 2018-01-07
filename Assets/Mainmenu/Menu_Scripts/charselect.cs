@@ -19,6 +19,7 @@ public class charselect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		i = 0;
 	}
 	
 	// Update is called once per frame
@@ -30,6 +31,7 @@ public class charselect : MonoBehaviour {
 	{
 		Settingsmanager.settings.character [i] = charnumber;
 		pickedchar [i].GetComponent<Image>().sprite = charimage[charnumber];
+		pickedchar [i].GetComponent<Image> ().enabled = true;
 		i++;
 		if (i == 4) 
 		{
