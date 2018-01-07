@@ -35,6 +35,7 @@ public class GunScript : MonoBehaviour {
         rend.material.color = gunColor;
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
+}
 	
 	// Update is called once per frame
 	void Update ()
