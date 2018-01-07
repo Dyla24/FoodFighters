@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Scoremanager : MonoBehaviour {
-   
 
     // Tag the score manager object with scoremanager
 
-    
     int Player1score;
     int Player2score;
     int Player3score;
     int Player4score;
-  
-
-
-   
+	public GameObject[] leaderboard = new GameObject[4];
 
     void Start ()
     {
@@ -74,11 +70,20 @@ public void GetScores ()
         highscores.Add(new Score(Player4score, "Player 4"));
 
         highscores.Sort();
+		for (int i = 0; i < 4; i++) 
+		{
+			char breaker = ':';
+			string[] s = highscores [i].ToString().Split(breaker);
 
-        Debug.Log(highscores[3].ToString());
-        Debug.Log(highscores[2].ToString());
-        Debug.Log(highscores[1].ToString());
-        Debug.Log(highscores[0].ToString());
+			leaderboard [i].transform.GetChild (0).GetComponent<Text> ().text = s [0];
+			leaderboard [i].transform.GetChild (1).GetComponent<Text> ().text = s [1];
+		}
+
+
+       // Debug.Log(highscores[3].ToString());
+        //Debug.Log(highscores[2].ToString());
+        //Debug.Log(highscores[1].ToString());
+        //Debug.Log(highscores[0].ToString());
 
         //for (int i = 0; i < highscores.Count; i++)
         //{
