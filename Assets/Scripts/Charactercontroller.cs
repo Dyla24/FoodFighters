@@ -8,6 +8,7 @@ public class Charactercontroller : MonoBehaviour {
 	public string HudTag;
     private GameObject uicrosshair;
     public AnimationClip deathClip;
+    //GameObject spawn;
 	Vector3 movementh, movementv;
 	public Vector3 movement;
     private Animator animator;
@@ -107,7 +108,6 @@ public class Charactercontroller : MonoBehaviour {
 			myrigidbody.velocity += jumpheight * Vector3.up;
 			print (myrigidbody.velocity);
 			jump = false;
-            //animator.SetBool("IsJumping", true);
 		}
 		if (myrigidbody.velocity.y < 0) {
 			myrigidbody.velocity += Vector3.up * Physics.gravity.y * (2f - 1) * Time.deltaTime;
