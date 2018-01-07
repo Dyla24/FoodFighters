@@ -34,15 +34,12 @@ public class Charactercontroller : MonoBehaviour {
 	public float ammopercentage;
 	public float startammo;
 	GunScript gun;
-<<<<<<< HEAD
     string lasthitby; // new
     int kills; //new
     public GameObject killer; //new
     bool killconfirm; //new
-=======
 	bool tr;
 	public GameObject timer;
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
 
     void Start () 
 	{
@@ -65,15 +62,12 @@ public class Charactercontroller : MonoBehaviour {
     
 	void Update () 
 	{
-<<<<<<< HEAD
         if (curhealth <= 0)
-=======
 		if (tr == false) 
 		{
 			tr = timer.GetComponent<Timer> ().timer;
 		}
         if(curhealth <= 0)
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
         {
 
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
@@ -83,19 +77,14 @@ public class Charactercontroller : MonoBehaviour {
                 killconfirm = false;
             }
             StartCoroutine(respawn());
-
-
         }
         UI_Health();
-<<<<<<< HEAD
-        character_movement();
-    }
-=======
-		if (tr) {
-			character_movement ();
+		if (tr) 
+		{
+			character_movement();
 		}
-	}
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
+        
+    }
 
 	void FixedUpdate()
 	{
@@ -153,14 +142,6 @@ public class Charactercontroller : MonoBehaviour {
     {
         kills += 1;
     }
-
-
-
-
-
-
-
-
 
     IEnumerator respawn()
     {
