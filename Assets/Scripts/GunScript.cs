@@ -25,9 +25,12 @@ public class GunScript : MonoBehaviour {
 	GameObject pewpew;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     string playertag; // new
 =======
     public Animator animator;
+=======
+>>>>>>> parent of 1b9d7ce... Started to add animations
 =======
 >>>>>>> parent of 1b9d7ce... Started to add animations
 
@@ -40,6 +43,9 @@ public class GunScript : MonoBehaviour {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 1b9d7ce... Started to add animations
 =======
 >>>>>>> parent of 1b9d7ce... Started to add animations
         Renderer rend = GetComponent<Renderer>();
@@ -47,10 +53,15 @@ public class GunScript : MonoBehaviour {
         rend.material.mainTexture = gunText;
         rend.material.color = gunColor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
 =======
 >>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
+=======
+        
+
+>>>>>>> parent of 1b9d7ce... Started to add animations
 =======
         
 
@@ -73,8 +84,11 @@ public class GunScript : MonoBehaviour {
             {
                 fire();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 animator.SetBool("IsShooting", true);
                 reloadcheck = true;
+=======
+>>>>>>> parent of 1b9d7ce... Started to add animations
 =======
 >>>>>>> parent of 1b9d7ce... Started to add animations
 
@@ -104,6 +118,7 @@ public class GunScript : MonoBehaviour {
             ammo -= shotspershot;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
 <<<<<<< HEAD
 =======
@@ -120,6 +135,8 @@ public class GunScript : MonoBehaviour {
             }
 >>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
 =======
+=======
+>>>>>>> parent of 1b9d7ce... Started to add animations
 			pewpew = (GameObject)Instantiate (bulletPrefab, transform.GetChild (0).transform.position, Quaternion.identity);
 			Ray ray = transform.parent.GetChild (0).GetComponent<Camera> ().ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0));
 			RaycastHit hit;
@@ -129,9 +146,12 @@ public class GunScript : MonoBehaviour {
 			} else {
 				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
 			}
+<<<<<<< HEAD
 >>>>>>> parent of 1b9d7ce... Started to add animations
 
             pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
+=======
+>>>>>>> parent of 1b9d7ce... Started to add animations
 
             Ray ray = transform.parent.GetChild(0).GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
