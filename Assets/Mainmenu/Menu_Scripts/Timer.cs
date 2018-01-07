@@ -10,7 +10,9 @@ public class Timer : MonoBehaviour {
 	public float minutes, seconds, miliseconds;
     public bool timer;
 	public float ftime = 0;
-	public GameObject Results;
+
+
+    private bool scoredisplayed = true;
 
 	// Use this for initialization
 	void Start () 
@@ -67,14 +69,19 @@ public class Timer : MonoBehaviour {
             if (Time.timeScale <= 0.3f)
             {
                 Time.timeScale = 1;
-				Invoke ("LS", 2);
+                if (scoredisplayed = true)
+                {
+                    Invoke("LS", 2);
+                    scoredisplayed = !scoredisplayed;
+                }
             }
         }
 	}
 	void LS()
 	{
-		//SceneManager.LoadScene(0);
-		Results.SetActive(true);
-	}
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores(); // new
+
+        Time.timeScale = 0;
+    }
 
 }
