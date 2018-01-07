@@ -22,8 +22,10 @@ public class GunScript : MonoBehaviour {
     string playertag; // new
     public Animator animator;
     // Use this for initialization
+	bool tr;
     void Start ()
     {
+		tr = false;
         baseammo = ammo;
 
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
@@ -33,37 +35,34 @@ public class GunScript : MonoBehaviour {
 	void Update ()
     {
         //Ammo_UI();
-        float primaryAttack = Input.GetAxis(fireController);
-        bool reload = Input.GetButtonDown(reloadController);
-        if (primaryAttack <= -0.37f)
-        {
-            if (ammo <= 0)
-            {
-                reloadcheck = true;
-            }
-            else
-            {
-                fire();
-                animator.SetBool("IsShooting", true);
-                reloadcheck = true;
-            }
-        }
-        else
-        {
-            animator.SetBool("IsShooting", false);
-        }
+		if (!tr)
+		{
+			tr = transform.parent.parent.GetComponent<Charactercontroller> ().timer.GetComponent<Timer> ().timer;
+		}
+		if (tr) {
+			float primaryAttack = Input.GetAxis (fireController);
+			bool reload = Input.GetButtonDown (reloadController);
+			if (primaryAttack <= -0.37f) {
+				if (ammo <= 0) {
+					reloadcheck = true;
+				} else {
+					fire ();
+					animator.SetBool ("IsShooting", true);
+					reloadcheck = true;
+				}
+			} else {
+				animator.SetBool ("IsShooting", false);
+			}
 
-        if(reloadcheck == true)
-        {
-            if (reload == true)
-            {
-                ammo = baseammo;
-                StartCoroutine(Reloading());
-                reloadcheck = false;
-            }
+			if (reloadcheck == true) {
+				if (reload == true) {
+					ammo = baseammo;
+					StartCoroutine (Reloading ());
+					reloadcheck = false;
+				}
 
-        }
-		
+			}
+		}
 	}
 
     void fire()
