@@ -3,77 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class Charactercontroller : MonoBehaviour {
-	private GameObject pcamera;
+    private GameObject pcamera;
     private GameObject playerhud;
-	public string HudTag;
+    public string HudTag;
     private GameObject uicrosshair;
     public AnimationClip deathClip;
     //GameObject spawn;
-	Vector3 movementh, movementv;
-	public Vector3 movement;
+    Vector3 movementh, movementv;
+    public Vector3 movement;
     private Animator animator;
-	private Vector3 shootdirection;
-	private Rigidbody myrigidbody;
-	public string controllerHorizontal, controllerVertical, controllerHorizontalRight, controllerVerticalRight, controllerJump, controllerLeftClick, controllerMap;
-	public string controllerEscape;
-	public float moveh, movev, vrotation;
+    private Vector3 shootdirection;
+    private Rigidbody myrigidbody;
+    public string controllerHorizontal, controllerVertical, controllerHorizontalRight, controllerVerticalRight, controllerJump, controllerLeftClick, controllerMap;
+    public string controllerEscape;
+    public float moveh, movev, vrotation;
     public float vrangeu = 40f, vranged = 20f;
-	private float nspeed, sspeed;
-	private bool sprint;
-	private int curhealth;
-	public bool grounded;
+    private float nspeed, sspeed;
+    private bool sprint;
+    private int curhealth;
+    public bool grounded;
     private bool doublejump, jumpkey;
-	[Range (1,10)]
-	public float jumpheight;
+    [Range(1, 10)]
+    public float jumpheight;
     private bool jump;
     public int bulletStrength;
     public Text textbox;
     private float speed;
     int starthealth;
-	public GameObject shoulder;
-	public float ammopercentage;
-	public float startammo;
-	GunScript gun;
-<<<<<<< HEAD
+    public GameObject shoulder;
+    public float ammopercentage;
+    public float startammo;
+    GunScript gun;
     string lasthitby; // new
     int kills; //new
     public GameObject killer; //new
     bool killconfirm; //new
-=======
-	bool tr;
-	public GameObject timer;
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
+    bool tr;
+    public GameObject timer;
 
-    void Start () 
-	{
+    void Start()
+    {
         killconfirm = true; //new
         kills = 0; //new
         lasthitby = "N/A"; // new
         starthealth = 10;
-		nspeed = 10;
-		sspeed = nspeed * 1.5f;
-		myrigidbody = this.GetComponent<Rigidbody> ();
-		playerhud = GameObject.FindGameObjectWithTag (HudTag);
+        nspeed = 10;
+        sspeed = nspeed * 1.5f;
+        myrigidbody = this.GetComponent<Rigidbody>();
+        playerhud = GameObject.FindGameObjectWithTag(HudTag);
         pcamera = this.gameObject.GetComponentInChildren<Camera>().gameObject;
-		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
-		uicrosshair = playerhud.transform.GetChild(0).gameObject;
+        animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        uicrosshair = playerhud.transform.GetChild(0).gameObject;
         curhealth = starthealth;
-		gun = pcamera.transform.parent.GetChild (1).gameObject.GetComponent<GunScript>();
-		startammo = gun.ammo;
-		timer = GameObject.FindGameObjectWithTag ("Timer");
+        gun = pcamera.transform.parent.GetChild(1).gameObject.GetComponent<GunScript>();
+        startammo = gun.ammo;
+        timer = GameObject.FindGameObjectWithTag("Timer");
     }
-    
-	void Update () 
-	{
-<<<<<<< HEAD
+
+    void Update()
+    {
+
         if (curhealth <= 0)
-=======
-		if (tr == false) 
-		{
-			tr = timer.GetComponent<Timer> ().timer;
-		}
-        if(curhealth <= 0)
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
+            if (tr == false)
+            {
+                tr = timer.GetComponent<Timer>().timer;
+            }
+        if (curhealth <= 0)
         {
 
             killer = GameObject.FindGameObjectWithTag(lasthitby); // new
@@ -87,15 +82,19 @@ public class Charactercontroller : MonoBehaviour {
 
         }
         UI_Health();
-<<<<<<< HEAD
         character_movement();
+
+        if (tr)
+        {
+
+            character_movement();
+        }
+        if (tr)
+        {
+
+            character_movement();
+        }
     }
-=======
-		if (tr) {
-			character_movement ();
-		}
-	}
->>>>>>> 349ed7a4731348feb38ce03d1e07ddbcaa87dfab
 
 	void FixedUpdate()
 	{
