@@ -122,10 +122,10 @@ public class Charactercontroller : MonoBehaviour {
 			float hpper = curhealth;
 			hpper = hpper / starthealth;
 			himage.fillAmount = hpper;
-			Image aimage = playerhud.transform.GetChild (2).GetComponent<Image> ();
+			Image aimage = playerhud.transform.GetChild (2).GetChild(1).GetComponent<Image> ();
 			ammopercentage = gun.ammo / startammo ;
 			aimage.fillAmount = ammopercentage;
-			aimage.transform.GetChild (0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
+			aimage.transform.parent.GetChild(0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
 		}
     }
 
