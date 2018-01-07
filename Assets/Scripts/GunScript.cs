@@ -45,9 +45,14 @@ public class GunScript : MonoBehaviour {
             else
             {
                 fire();
+                animator.SetBool("IsShooting", true);
                 reloadcheck = true;
 
             }
+        }
+        else
+        {
+            animator.SetBool("IsShooting", false);
         }
 
         if(reloadcheck == true)
@@ -86,11 +91,6 @@ public class GunScript : MonoBehaviour {
             //BulletCreate.velocity = transform.TransformDirection(new Vector3(bulletspeed, 0, 0));
 
             lastShot = Time.time;
-            animator.SetBool("IsShooting", true);
-        }
-        else
-        {
-            animator.SetBool("IsShooting", false);
         }
 
     }
