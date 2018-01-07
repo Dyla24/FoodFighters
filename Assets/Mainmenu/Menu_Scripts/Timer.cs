@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour {
 	public float minutes, seconds, miliseconds;
     public bool timer;
 	public float ftime = 0;
+	public GameObject Results;
 
 	// Use this for initialization
 	void Start () 
@@ -72,7 +73,8 @@ public class Timer : MonoBehaviour {
 	}
 	void LS()
 	{
-		SceneManager.LoadScene(0);
+		//SceneManager.LoadScene(0);
+		Results.SetActive(true);
 	}
 
 }
