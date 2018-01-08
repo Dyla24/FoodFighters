@@ -89,7 +89,7 @@ public class Charactercontroller : MonoBehaviour {
 
         if (ammoadder == true)
         {
-            ammoHolder += gun.reloads;
+            //ammoHolder += gun.reloads;
         }
     }
 
