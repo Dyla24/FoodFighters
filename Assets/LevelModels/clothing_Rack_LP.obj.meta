@@ -12,6 +12,7 @@ ModelImporter:
     2300000: Clothing_Rack
     3300000: Clothing_Rack
     4300000: Clothing_Rack
+    6400000: Clothing_Rack
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
