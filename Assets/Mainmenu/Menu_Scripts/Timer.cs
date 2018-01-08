@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour {
 	public float ftime = 0;
     private bool scoredisplayed = true;
 	public GameObject Results;
+	bool r1 = false;
 
 	// Use this for initialization
 	void Start () 
@@ -62,26 +63,25 @@ public class Timer : MonoBehaviour {
         
 		if (!timer && starttime == 0)
         {
-			Time.timeScale = Mathf.Lerp(1, 0, ftime);
-			ftime += Time.deltaTime/2;
-            if (Time.timeScale <= 0.3f)
-            {
-                Time.timeScale = 1;
-                if (scoredisplayed == true)
-                {
-                    Invoke("LS", 2);
-                    scoredisplayed = !scoredisplayed;
-                }
-            }
+			if (!r1) {
+				Time.timeScale = Mathf.Lerp (1, 0, ftime);
+				ftime += Time.deltaTime / 2;
+				if (Time.timeScale <= 0.3f) {
+					r1 = true;
+					if (scoredisplayed == true) {
+						LS ();
+						scoredisplayed = !scoredisplayed;
+					}
+				}
+			}
         }
 	}
 	void LS()
 	{
-		Time.timeScale = 0;
+		Time.timeScale = 1;
 		Results.SetActive (true);
         GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores();
 
-        
     }
 
 }

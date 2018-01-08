@@ -22,6 +22,10 @@ public class KillBullet : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
+		if (collision.gameObject.tag != "Player") 
+		{
+			Destroy (gameObject);
+		}
     }
 
     public void Setfiretag(string tag) //new
