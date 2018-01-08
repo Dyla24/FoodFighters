@@ -8,11 +8,13 @@ public class Scoremanager : MonoBehaviour {
 
     // Tag the score manager object with scoremanager
 
-    int Player1score;
-    int Player2score;
-    int Player3score;
-    int Player4score;
+   // int Player1score;
+   // int Player2score;
+   // int Player3score;
+   // int Player4score;
 	public GameObject[] leaderboard = new GameObject[4];
+	public GameObject[] players = new GameObject[4];
+	int[] playerscore = new int[4]; 
 
     void Start ()
     {
@@ -57,18 +59,19 @@ public class Scoremanager : MonoBehaviour {
 
 public void GetScores ()
     {
-
-        Player1score = GameObject.FindGameObjectWithTag("Player1").GetComponent<Charactercontroller>().Getkills();
-        Player2score = GameObject.FindGameObjectWithTag("Player2").GetComponent<Charactercontroller>().Getkills();
-        Player3score = GameObject.FindGameObjectWithTag("Player3").GetComponent<Charactercontroller>().Getkills();
-        Player4score = GameObject.FindGameObjectWithTag("Player4").GetComponent<Charactercontroller>().Getkills();
+		for (int i = 0; i < 4; i++) 
+		{
+			playerscore [i] = players [i].GetComponent<Charactercontroller> ().Getkills ();
+			players [i].GetComponent<Charactercontroller> ().tr = false;
+		}
 
         List<Score> highscores = new List<Score>();
-        highscores.Add(new Score(Player1score, "Player 1"));
-        highscores.Add(new Score(Player2score, "Player 2"));
-        highscores.Add(new Score(Player3score, "Player 3"));
-        highscores.Add(new Score(Player4score, "Player 4"));
-
+		//char[] t = {'(', 'C', 'l', 'o', 'n', 'e', ')'} ;
+		for (int i = 0; i < 4; i++) 
+		{
+			//string s = players [i].gameObject.name.ToString ().TrimEnd (t);
+			highscores.Add (new Score (playerscore [i],players [i].gameObject.name.ToString () ));
+		}
         highscores.Sort();
 		for (int i = 0; i < 4; i++) 
 		{
@@ -78,16 +81,5 @@ public void GetScores ()
 			leaderboard [i].transform.GetChild (0).GetComponent<Text> ().text = s [0];
 			leaderboard [i].transform.GetChild (1).GetComponent<Text> ().text = s [1];
 		}
-
-
-       // Debug.Log(highscores[3].ToString());
-        //Debug.Log(highscores[2].ToString());
-        //Debug.Log(highscores[1].ToString());
-        //Debug.Log(highscores[0].ToString());
-
-        //for (int i = 0; i < highscores.Count; i++)
-        //{
-        //    Debug.Log(highscores[i].ToString());
-        //}
     }
 }

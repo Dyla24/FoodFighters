@@ -10,9 +10,13 @@ public class playerSpawning : MonoBehaviour
     public List<GameObject> spawnPoints = new List<GameObject>();
     private List<GameObject> activePlayers = new List<GameObject>();
 
+	public GameObject Scoremanager;
+	Scoremanager sm;
+
     private void Awake()
     {
         Instance = this;
+		sm = Scoremanager.GetComponent<Scoremanager> ();
     }
 
     // Use this for initialization
@@ -32,6 +36,7 @@ public class playerSpawning : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             activePlayers.Add(Instantiate(players[i], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation));
+			sm.players [i] = activePlayers[i];
         }
     }
 

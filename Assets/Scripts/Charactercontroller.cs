@@ -37,12 +37,12 @@ public class Charactercontroller : MonoBehaviour {
 	public GameObject shoulder;
 	public float ammopercentage;
 	public float startammo;
-	GunScript gun;
+	public GunScript gun;
     string lasthitby; // new
     int kills; //new
     public GameObject killer; //new
     bool killconfirm; //new
-    bool tr;
+	public bool tr;
     public GameObject timer;
 
     void Start()
@@ -66,9 +66,12 @@ public class Charactercontroller : MonoBehaviour {
 
     void Update()
     {
-		if (tr == false)
+		if (!tr)
 		{
 			tr = timer.GetComponent<Timer>().timer;
+			movement = Vector3.zero;
+			animator.SetFloat ("SetSpeed", myrigidbody.velocity.magnitude);
+			//print (myrigidbody.velocity);
 		}
         if (curhealth <= 0)
         {
@@ -83,14 +86,13 @@ public class Charactercontroller : MonoBehaviour {
         UI_Health();
         if (tr)
         {
-
             character_movement();
         }
-
         if (ammoadder == true)
         {
-            //ammoHolder += gun.reloads;
-        }
+            ammoHolder += gun.reloads;
+		}
+
     }
 
 	void FixedUpdate()
@@ -134,12 +136,9 @@ public class Charactercontroller : MonoBehaviour {
 			ammopercentage = gun.ammo / startammo ;
 			aimage.fillAmount = ammopercentage;
 			aimage.transform.parent.GetChild(0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
-			aimage.transform.parent.GetChild (2).GetComponent<RectTransform> ().sizeDelta = new Vector2 (160 * gun.reloads, 430);
+			aimage.transform.parent.GetChild (2).GetComponent<RectTransform> ().sizeDelta = new Vector2 (160 * gun.reloads, 181);
 		}
     }
-
-
-
 
 
 

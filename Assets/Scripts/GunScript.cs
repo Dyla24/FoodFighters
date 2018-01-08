@@ -24,6 +24,7 @@ public class GunScript : MonoBehaviour {
     // Use this for initialization
 	bool tr;
 	public int reloads;
+	public bool shooting;
     void Start ()
     {
 		tr = false;
@@ -50,9 +51,11 @@ public class GunScript : MonoBehaviour {
 					fire ();
 					animator.SetBool ("IsShooting", true);
 					reloadcheck = true;
+					shooting = true;
 				}
 			} else {
 				animator.SetBool ("IsShooting", false);
+				shooting = false;
 			}
 
 			if (reloadcheck == true) {
