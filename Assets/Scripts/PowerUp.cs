@@ -8,6 +8,7 @@ public class PowerUp : MonoBehaviour
     public float speedBoost;
     public int healthBoost;
     public int damageboost;
+    public int ammo;
     public float timer = 5;
     public Charactercontroller bob;
     Collider b_collider;
@@ -34,21 +35,18 @@ public class PowerUp : MonoBehaviour
             if (timer < 0)
             {
                 PU_active = false;
-               /*if (gameObject.CompareTag("Healthy"))
+                if (gameObject.CompareTag("Speedy"))
                 {
                     bob.nspeed -= speedBoost;
                 }
-                else if (gameObject.CompareTag("Speedy"))
+                if (gameObject.CompareTag("Healthy"))
                 {
                     bob.curhealth -= healthBoost;
-                }*/
+                }
                 if (gameObject.CompareTag("Hurty"))
                 {
-                    Debug.Log("Running");
                     bob.bulletStrength -= damageboost;
                 }
-
-
             }
 		
         }
@@ -89,27 +87,33 @@ public class PowerUp : MonoBehaviour
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
             }
+            if (gameObject.CompareTag("Ammo"))
+            {
+                PU_active = true;
+                PU_ammo();
+                b_collider.enabled = false;
+                b_rend.enabled = false;
+                b_part_rend.enabled = false;
+            }
         }
-        
-
     }
 
     void PU_speed()
     {
-        /*if (PU_active == true)
+        if (PU_active == true)
         {
             bob.nspeed += speedBoost;
-        }*/
+        }
 
        
     }
 
     void PU_Health()
     {
-        /*if (PU_active == true)
+        if (PU_active == true)
         {
             bob.curhealth += healthBoost;
-        }*/
+        }
        
     }
 
@@ -120,5 +124,13 @@ public class PowerUp : MonoBehaviour
             bob.bulletStrength += damageboost;
         }
        
+    }
+
+    void PU_ammo()
+    {
+        if (PU_active == true)
+        {
+            bob.ammoHolder += ammo;
+        }
     }
 }
