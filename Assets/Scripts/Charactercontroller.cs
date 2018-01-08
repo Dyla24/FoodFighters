@@ -134,6 +134,7 @@ public class Charactercontroller : MonoBehaviour {
 			ammopercentage = gun.ammo / startammo ;
 			aimage.fillAmount = ammopercentage;
 			aimage.transform.parent.GetChild(0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
+			aimage.transform.parent.GetChild (2).GetComponent<RectTransform> ().sizeDelta = new Vector2 (160 * gun.reloads, 430);
 		}
     }
 
