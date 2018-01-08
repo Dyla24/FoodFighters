@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour {
     public string reloadController;
     public float ammo;
     bool reloadcheck;
+    bool isReloading = false;
     float baseammo;
     public float shotspershot = 1;
     public Text textbox;
@@ -43,25 +44,32 @@ public class GunScript : MonoBehaviour {
 		if (tr) {
 			float primaryAttack = Input.GetAxis (fireController);
 			bool reload = Input.GetButtonDown (reloadController);
-			if (primaryAttack <= -0.37f) {
+			if (!isReloading && primaryAttack <= -0.37f)
+            {
 				if (ammo <= 0) {
 					reloadcheck = true;
-				} else {
-					fire ();
+				}
+                else
+                {
+					fire();
 					animator.SetBool ("IsShooting", true);
 					reloadcheck = true;
 				}
-			} else {
+			}
+            else
+            {
 				animator.SetBool ("IsShooting", false);
 			}
 
-			if (reloadcheck == true) {
-				if (reload == true && reloads >= 1) {
-					ammo = baseammo;
-					StartCoroutine (Reloading ());
-					reloadcheck = false;
-					reloads--;
-				}
+			if (reloadcheck == true)
+            {
+                if (reload == true && reloads >= 1)
+                {
+                    ammo = baseammo;
+                    StartCoroutine(Reloading());
+                    reloadcheck = false;
+                    reloads--;
+                }
 
 			}
 		}
@@ -69,23 +77,28 @@ public class GunScript : MonoBehaviour {
 
     void fire()
     {
-        if (Time.time > firerate + lastShot)
-        {
-            ammo -= shotspershot;
-            pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
-			Ray ray = transform.parent.GetChild (0).GetComponent<Camera> ().ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0));
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit)) {
-				pewpew.transform.LookAt (hit.point);
-				pewpew.GetComponent<Rigidbody> ().velocity = pewpew.transform.forward * -bulletspeed;
-			} else {
-				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
-			}
+            if (Time.time > firerate + lastShot)
+            {
+                ammo -= shotspershot;
+                pewpew = (GameObject)Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
+                Ray ray = transform.parent.GetChild(0).GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    pewpew.transform.LookAt(hit.point);
+                    pewpew.GetComponent<Rigidbody>().velocity = pewpew.transform.forward * -bulletspeed;
+                }
+                else
+                {
+                    pewpew.GetComponent<Rigidbody>().velocity = ray.direction * -bulletspeed;
+                }
 
-            pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
+                pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
 
-            lastShot = Time.time;
-        }
+                lastShot = Time.time;
+            }
+
+
 
     }
 
@@ -97,9 +110,11 @@ public class GunScript : MonoBehaviour {
     IEnumerator Reloading()
     {
         animator.SetBool("IsReloading", true);
+        isReloading = true;
 
         yield return new WaitForSeconds(gunAnim.length);
 
+        isReloading = false;
         animator.SetBool("IsReloading", false);
     }
 
