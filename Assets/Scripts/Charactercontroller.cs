@@ -18,9 +18,10 @@ public class Charactercontroller : MonoBehaviour {
     public string controllerEscape;
     public float moveh, movev, vrotation;
     public float vrangeu = 40f, vranged = 20f;
-    private float nspeed, sspeed;
+    public float nspeed;
+    private float sspeed;
     private bool sprint;
-    private int curhealth;
+    public int curhealth;
     public bool grounded;
     private bool doublejump, jumpkey;
     public AnimationClip jumpclip;
@@ -30,6 +31,8 @@ public class Charactercontroller : MonoBehaviour {
     public int bulletStrength;
     public Text textbox;
     private float speed;
+    private bool ammoadder;
+    public int ammoHolder;
     int starthealth;
 	public GameObject shoulder;
 	public float ammopercentage;
@@ -82,6 +85,11 @@ public class Charactercontroller : MonoBehaviour {
         {
 
             character_movement();
+        }
+
+        if (ammoadder == true)
+        {
+            ammoHolder += gun.reloads;
         }
     }
 
