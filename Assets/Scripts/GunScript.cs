@@ -23,14 +23,13 @@ public class GunScript : MonoBehaviour {
     public Animator animator;
     // Use this for initialization
 	bool tr;
-	public int reloads;
     void Start ()
     {
 		tr = false;
         baseammo = ammo;
-		reloads = 1;
+
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
-	}
+}
 	
 	// Update is called once per frame
 	void Update ()
@@ -56,11 +55,10 @@ public class GunScript : MonoBehaviour {
 			}
 
 			if (reloadcheck == true) {
-				if (reload == true && reloads >= 1) {
+				if (reload == true) {
 					ammo = baseammo;
 					StartCoroutine (Reloading ());
 					reloadcheck = false;
-					reloads--;
 				}
 
 			}
