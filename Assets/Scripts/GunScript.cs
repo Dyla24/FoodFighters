@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour {
     public string reloadController;
     public float ammo;
     bool reloadcheck;
+    bool isReloading = false;
     float baseammo;
     public float shotspershot = 1;
     public Text textbox;
@@ -46,7 +47,7 @@ public class GunScript : MonoBehaviour {
 		if (tr) {
 			float primaryAttack = Input.GetAxis (fireController);
 			bool reload = Input.GetButtonDown (reloadController);
-			if (primaryAttack <= -0.37f) {
+			if (!isReloading && primaryAttack <= -0.37f) {
 				if (ammo <= 0) {
 					reloadcheck = true;
 					StartCoroutine (noammoclip ());
@@ -100,9 +101,11 @@ public class GunScript : MonoBehaviour {
     IEnumerator Reloading()
     {
         animator.SetBool("IsReloading", true);
+        isReloading = true;
 
         yield return new WaitForSeconds(gunAnim.length);
 
+        isReloading = false;
         animator.SetBool("IsReloading", false);
     }
 	IEnumerator noammoclip()

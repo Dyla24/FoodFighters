@@ -21,7 +21,7 @@ public class PowerUpSpawns : MonoBehaviour {
 
     void spawnObjects()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 6; i++)
         {
             PU_active.Add(Instantiate(powerUps[i], PU_spawnPoints[i].transform.position, PU_spawnPoints[i].transform.rotation));
         }
