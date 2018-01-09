@@ -11,6 +11,8 @@ public class Gamesettings {
 	public float cdotsize;
 	public float cthickness;
 	public float clength;
+    public float sensitivity;
+    public bool sprint;
 	public int p1char;
 	public int p2char;
 	public int p3char;

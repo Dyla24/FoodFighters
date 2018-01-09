@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Settingsmanager : MonoBehaviour {
 	public static Settingsmanager settings;
-	public Toggle fullscreen;
+	public Toggle fullscreen, sprint;
 	public Dropdown quality, resolutiondropdown, vsync;
-	public Slider ccentergap, cdotsize, cthickness, clength;
+	public Slider ccentergap, cdotsize, cthickness, clength, sensitivity;
 	public Gamesettings gamesettings;
 	public Resolution[] resolutions;
 	public GameObject crosshair;
@@ -38,6 +38,8 @@ public class Settingsmanager : MonoBehaviour {
 		cdotsize.onValueChanged.AddListener(delegate {dotsizechange();});
 		cthickness.onValueChanged.AddListener(delegate {thicknesschange();});
 		clength.onValueChanged.AddListener(delegate {crosshairlengthchange();});
+        sprint.onValueChanged.AddListener(delegate {schange(); });
+        sensitivity.onValueChanged.AddListener(delegate { senschange(); });
 		applysettings.GetComponent<Button> ().onClick.AddListener (delegate {savesettings ();});
 		resolutions = Screen.resolutions;
 		foreach (Resolution resolution in resolutions) 
@@ -58,6 +60,8 @@ public class Settingsmanager : MonoBehaviour {
 			cthickness = sr.cthickness;
 			clength = sr.clength;
 			crosshair = sr.crosshair;
+            sensitivity = sr.sensitivity;
+            sprint = sr.sprint;
 			applysettings = sr.applysettings;
 			setupsettings ();
 			loadsettings ();
@@ -100,6 +104,14 @@ public class Settingsmanager : MonoBehaviour {
 		gamesettings.clength = clength.value;
 		crosshair.GetComponent<crosshairmanager> ().crosshairlength ();
 	}
+    public void schange()
+    {
+        gamesettings.sprint = sprint.isOn;
+    }
+    public void senschange()
+    {
+        gamesettings.sensitivity = sensitivity.value;
+    }
 
 	public void savesettings()
 	{
@@ -114,6 +126,9 @@ public class Settingsmanager : MonoBehaviour {
 		gconfig.WriteLine ("Dot Size = " + gamesettings.cdotsize);
 		gconfig.WriteLine ("Thickness = " + gamesettings.cthickness);
 		gconfig.WriteLine ("Crosshair Length = " + gamesettings.clength);
+        gconfig.WriteLine("Controller Settings");
+        gconfig.WriteLine("Shift = " + gamesettings.sprint);
+        gconfig.WriteLine("Sensitivity = " + gamesettings.sensitivity);
 		gconfig.Close ();
 	}
 	public void loadsettings()
@@ -137,6 +152,11 @@ public class Settingsmanager : MonoBehaviour {
 		cthickness.value = gamesettings.cthickness = int.Parse(ct.Substring(ct.Length-2));
 		string cl = reader.ReadLine ();
 		clength.value = gamesettings.clength = int.Parse(cl.Substring(cl.Length-2));
+        reader.ReadLine();
+        string sp = reader.ReadLine();
+        sprint.isOn = gamesettings.sprint = bool.Parse(sp.Substring(sp.Length - 5));
+        string se = reader.ReadLine();
+        sensitivity.value = gamesettings.sensitivity = int.Parse(se.Substring(se.Length - 1));
 		reader.Close ();
 	}
 
