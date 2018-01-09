@@ -162,7 +162,19 @@ public class Charactercontroller : MonoBehaviour {
             {
                 aimage.fillAmount = 1;
             }
-			aimage.transform.parent.GetChild(0).GetComponent<Text> ().text = (ammopercentage * 100).ToString();
+            if(ammopercentage == 0)
+            {
+                aimage.transform.parent.GetChild(0).GetComponent<Text>().text = "X";
+                aimage.transform.parent.GetChild(0).GetComponent<Text>().color = Color.red;
+                aimage.transform.parent.GetChild(0).localScale = new Vector3(2, 2, 2);
+            }
+            else
+            {
+                aimage.transform.parent.GetChild(0).GetComponent<Text>().text = (ammopercentage * 100).ToString();
+                aimage.transform.parent.GetChild(0).GetComponent<Text>().color = new Color32(17, 17, 17,255);
+                aimage.transform.parent.GetChild(0).localScale = new Vector3(1, 1, 1);
+            }
+			
 			aimage.transform.parent.GetChild (2).GetComponent<RectTransform> ().sizeDelta = new Vector2 (160 * gun.reloads, 181);
 
 		}
