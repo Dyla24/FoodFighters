@@ -11,42 +11,48 @@ public class crosshairmanager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
 	{
-		findsetting ();
-		ccentergap = gamesettings.ccentergap;
-		cdotsize = gamesettings.cdotsize;
-		cthickness = gamesettings.cthickness;
-		clength = gamesettings.clength;
-		centergap ();
-		dotsize ();
-		thickness ();
-		crosshairlength ();
+		//findsetting ();
+        setup();
 	}
-
-	public void findsetting()
-	{
-		if (Settingsmanager.settings == null) {
-			gamesettings = new Gamesettings ();
-		} else if (Settingsmanager.settings != null) {
-			gamesettings = Settingsmanager.settings.gamesettings;
-		}
-	}
+    void setup()
+    {
+        if(Settingsmanager.settings != null)
+        {
+            gamesettings = Settingsmanager.settings.gamesettings;
+        }
+        if (gamesettings == null)
+        {
+            ccentergap = 10;
+            cdotsize = 10;
+            cthickness = 10;
+            clength = 10;
+        }
+        else
+        {
+            ccentergap = gamesettings.ccentergap;
+            cdotsize = gamesettings.cdotsize;
+            cthickness = gamesettings.cthickness;
+            clength = gamesettings.clength;
+        }
+        centergap();
+        dotsize();
+        thickness();
+        crosshairlength();
+    }
 
 	public void centergap()
 	{
-		if (gamesettings == null) {
-			findsetting ();
-		} else {
-			ccentergap = gamesettings.ccentergap;
-			if (ccentergap == 0)
-				ccentergap = 10;
-			this.GetComponent<RectTransform> ().sizeDelta = new Vector2 (ccentergap, ccentergap);
-		}
+        if (gamesettings != null)
+        {
+            ccentergap = gamesettings.ccentergap;
+            if (ccentergap == 0)
+                ccentergap = 10;
+            this.GetComponent<RectTransform>().sizeDelta = new Vector2(ccentergap, ccentergap);
+        }
 	}
 	public void dotsize()
 	{
-		if (gamesettings == null) {
-			findsetting ();
-		} else {
+		if (gamesettings != null) {
 			cdotsize = gamesettings.cdotsize;
 			if (cdotsize == 0)
 				cdotsize = 10;
@@ -55,9 +61,7 @@ public class crosshairmanager : MonoBehaviour {
 	}
 	public void thickness()
 	{
-		if (gamesettings == null) {
-			findsetting ();
-		} else {
+		if (gamesettings != null) {
 			cthickness = gamesettings.cthickness;
 			if (cthickness == 0)
 				cthickness = 10;
@@ -69,9 +73,7 @@ public class crosshairmanager : MonoBehaviour {
 	}
 	public void crosshairlength()
 	{
-		if (gamesettings == null) {
-			findsetting ();
-		} else {
+		if (gamesettings != null) {
 			clength = gamesettings.clength;
 			if (clength == 0)
 				clength = 40;

@@ -31,7 +31,6 @@ public class loadingscreen : MonoBehaviour {
 		{
 			yield return null;
 			progress.value = Mathf.Lerp (progress.value, 1, 0.2f);
-			print (progress.value);
 		}
 	}
 }

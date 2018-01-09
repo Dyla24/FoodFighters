@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class mainmenureferences : MonoBehaviour {
 	public Toggle fullscreen;
+    public Toggle sprint;
 	public Dropdown quality;
 	public Dropdown resolutiondropdown;
 	public Dropdown vsync;
@@ -12,6 +13,7 @@ public class mainmenureferences : MonoBehaviour {
 	public Slider cdotsize;
 	public Slider cthickness;
 	public Slider clength;
+    public Slider sensitivity;
 	public GameObject crosshair;
 	public GameObject applysettings;
 

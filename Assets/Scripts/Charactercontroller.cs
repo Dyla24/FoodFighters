@@ -44,6 +44,8 @@ public class Charactercontroller : MonoBehaviour {
     bool killconfirm; //new
 	public bool tr;
     public GameObject timer;
+    float sensitivity = 2;
+    Gamesettings gamesettings;
 
     void Start()
     {
@@ -62,6 +64,15 @@ public class Charactercontroller : MonoBehaviour {
         gun = pcamera.transform.parent.GetChild(1).gameObject.GetComponent<GunScript>();
         startammo = gun.ammo;
         timer = GameObject.FindGameObjectWithTag("Timer");
+        if (Settingsmanager.settings != null)
+        {
+            gamesettings = Settingsmanager.settings.gamesettings;
+        }
+        if (gamesettings != null)
+        {
+            sensitivity = gamesettings.sensitivity;
+            sprint = gamesettings.sprint;
+        }
     }
 
     void Update()
@@ -92,7 +103,7 @@ public class Charactercontroller : MonoBehaviour {
         {
             ammoHolder += gun.reloads;
 		}
-
+        pcamera.transform.parent.position = shoulder.transform.position;
     }
 
 	void FixedUpdate()
@@ -134,7 +145,7 @@ public class Charactercontroller : MonoBehaviour {
             if (hpper < 1)
             {
                 float ho = hpper * (100 - 25) % (100 - 25) + 25;
-                himage.fillAmount = hpper;
+                himage.fillAmount = ho;
             }
             else
             {
@@ -242,12 +253,11 @@ public class Charactercontroller : MonoBehaviour {
         shootdirection = new Vector2(0f, Input.GetAxisRaw(controllerHorizontalRight));
         if (shootdirection.sqrMagnitude >= 0.2f)
         {
-            transform.Rotate(shootdirection * 2.0f);
+            transform.Rotate(shootdirection * sensitivity);
         }
         //up/down rotation
-        vrotation += Input.GetAxisRaw(controllerVerticalRight);
+        vrotation += Input.GetAxisRaw(controllerVerticalRight)* (sensitivity/2);
 		vrotation = Mathf.Clamp(vrotation, -vrangeu, vranged);
-		pcamera.transform.parent.position = shoulder.transform.position;
 		pcamera.transform.parent.localRotation = Quaternion.Euler (vrotation, 0, 0);
 
         if (playerhud != null && uicrosshair != null)
