@@ -46,9 +46,11 @@ public class Charactercontroller : MonoBehaviour {
     public GameObject timer;
     float sensitivity = 2;
     Gamesettings gamesettings;
+	public int deaths;
 
     void Start()
     {
+		playerhud = GameObject.FindGameObjectWithTag(HudTag);
         killconfirm = true; //new
         kills = 0; //new
         lasthitby = "N/A"; // new
@@ -56,7 +58,6 @@ public class Charactercontroller : MonoBehaviour {
         nspeed = 5;
         sspeed = nspeed * 1.5f;
         myrigidbody = this.GetComponent<Rigidbody>();
-        playerhud = GameObject.FindGameObjectWithTag(HudTag);
         pcamera = this.gameObject.GetComponentInChildren<Camera>().gameObject;
         animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
         uicrosshair = playerhud.transform.GetChild(0).gameObject;
@@ -91,6 +92,7 @@ public class Charactercontroller : MonoBehaviour {
             {
                 killer.GetComponentInChildren<Charactercontroller>().Addkill(); // new
                 killconfirm = false;
+				deaths++;
             }
             StartCoroutine(respawn());
         }
@@ -174,9 +176,7 @@ public class Charactercontroller : MonoBehaviour {
                 aimage.transform.parent.GetChild(0).GetComponent<Text>().color = new Color32(17, 17, 17,255);
                 aimage.transform.parent.GetChild(0).localScale = new Vector3(1, 1, 1);
             }
-			
 			aimage.transform.parent.GetChild (2).GetComponent<RectTransform> ().sizeDelta = new Vector2 (160 * gun.reloads, 181);
-
 		}
     }
 
@@ -276,18 +276,18 @@ public class Charactercontroller : MonoBehaviour {
         {
             if (Input.GetButtonDown(controllerMap))
             {
-                playerhud.SetActive(true);
+				playerhud.transform.GetChild(3).gameObject.SetActive(true);
                 uicrosshair.SetActive(false);
             }
             else if (Input.GetButtonUp(controllerMap))
             {
-                playerhud.SetActive(false);
+				playerhud.transform.GetChild(3).gameObject.SetActive(false);
                 uicrosshair.SetActive(true);
             }
         }
         if (Input.GetButton(controllerMap))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 

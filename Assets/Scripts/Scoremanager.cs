@@ -15,15 +15,31 @@ public class Scoremanager : MonoBehaviour {
 	public GameObject[] leaderboard = new GameObject[4];
 	public GameObject[] players = new GameObject[4];
 	int[] playerscore = new int[4]; 
+	public GameObject[] kdimages = new GameObject[4];
 
     void Start ()
-    {
-        
+	{
+		hudref ();
+	}
+	public void hudref()
+	{
+		for (int i = 0; i < 4; i++) 
+		{
+			kdimages [i] = GameObject.FindGameObjectWithTag ("P"+(i+1)+"hud").transform.GetChild(3).GetChild(1).gameObject;
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		
+		for (int i = 0; i < 4; i++) 
+		{
+			kdimages [i].transform.GetChild (1).GetChild (0).GetComponent<Text> ().text = (players [0].GetComponent<Charactercontroller> ().Getkills () + "\n" + players [0].GetComponent<Charactercontroller> ().deaths.ToString());
+			kdimages [i].transform.GetChild (2).GetChild (0).GetComponent<Text> ().text = (players [1].GetComponent<Charactercontroller> ().Getkills () + "\n" + players [1].GetComponent<Charactercontroller> ().deaths.ToString());
+			kdimages [i].transform.GetChild (3).GetChild (0).GetComponent<Text> ().text = (players [2].GetComponent<Charactercontroller> ().Getkills () + "\n" + players [2].GetComponent<Charactercontroller> ().deaths.ToString());
+			kdimages [i].transform.GetChild (4).GetChild (0).GetComponent<Text> ().text = (players [3].GetComponent<Charactercontroller> ().Getkills () + "\n" + players [3].GetComponent<Charactercontroller> ().deaths.ToString());
+		}
 	}
 
     public class Score : IComparable
@@ -66,10 +82,8 @@ public void GetScores ()
 		}
 
         List<Score> highscores = new List<Score>();
-		//char[] t = {'(', 'C', 'l', 'o', 'n', 'e', ')'} ;
 		for (int i = 0; i < 4; i++) 
 		{
-			//string s = players [i].gameObject.name.ToString ().TrimEnd (t);
 			highscores.Add (new Score (playerscore [i],players [i].gameObject.name.ToString () ));
 		}
         highscores.Sort();
@@ -77,7 +91,6 @@ public void GetScores ()
 		{
 			char breaker = ':';
 			string[] s = highscores [i].ToString().Split(breaker);
-
 			leaderboard [i].transform.GetChild (0).GetComponent<Text> ().text = s [0];
 			leaderboard [i].transform.GetChild (1).GetComponent<Text> ().text = s [1];
 		}
