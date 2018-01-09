@@ -285,9 +285,9 @@ public class Charactercontroller : MonoBehaviour {
                 uicrosshair.SetActive(true);
             }
         }
-        if (Input.GetButton(controllerMap))
+		if (Input.GetButton(controllerMap) && Input.GetButton(controllerEscape))
         {
-            //UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 
