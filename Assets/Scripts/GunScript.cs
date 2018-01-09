@@ -25,12 +25,14 @@ public class GunScript : MonoBehaviour {
 	bool tr;
 	public int reloads;
 	public bool shooting;
+	AudioSource audiosauce;
     void Start ()
     {
 		tr = false;
         baseammo = ammo;
 		reloads = 1;
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
+		audiosauce = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +49,7 @@ public class GunScript : MonoBehaviour {
 			if (primaryAttack <= -0.37f) {
 				if (ammo <= 0) {
 					reloadcheck = true;
+					StartCoroutine (noammoclip ());
 				} else {
 					fire ();
 					animator.SetBool ("IsShooting", true);
@@ -65,7 +68,6 @@ public class GunScript : MonoBehaviour {
 					reloadcheck = false;
 					reloads--;
 				}
-
 			}
 		}
 	}
@@ -84,9 +86,7 @@ public class GunScript : MonoBehaviour {
 			} else {
 				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
 			}
-
             pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
-
             lastShot = Time.time;
         }
 
@@ -105,6 +105,15 @@ public class GunScript : MonoBehaviour {
 
         animator.SetBool("IsReloading", false);
     }
+	IEnumerator noammoclip()
+	{
+		print ("hello");
+		if (!audiosauce.isPlaying) {
+			audiosauce.Play ();
+			yield return new WaitForSeconds (0.2f);
+			audiosauce.Stop ();
+		}
 
+	}
 
 }
