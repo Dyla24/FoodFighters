@@ -8,7 +8,6 @@ public class creditstext : MonoBehaviour {
     Dictionary<string, GameObject> L = new Dictionary<string, GameObject>();
 	public List<string> credits;
 	public int textspeed;
-	public GameObject ctext;
 	public int i = 0;
     public GameObject container;
 	public GameObject backbut;
