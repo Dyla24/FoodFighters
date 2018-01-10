@@ -278,7 +278,15 @@ public class Charactercontroller : MonoBehaviour {
         vrotation += Input.GetAxisRaw(controllerVerticalRight)* (sensitivity/2);
 		vrotation = Mathf.Clamp(vrotation, -vrangeu, vranged);
 		pcamera.transform.parent.localRotation = Quaternion.Euler (vrotation, 0, 0);
-
+		RaycastHit hit;
+		if (Physics.Linecast (pcamera.transform.position, pcamera.transform.parent.position, out hit,1 << 8)) {
+			pcamera.transform.localPosition = Vector3.Lerp(pcamera.transform.localPosition, new Vector3 (pcamera.transform.localPosition.x, pcamera.transform.localPosition.y, transform.InverseTransformPoint(hit.point).z + 0.1f),Time.deltaTime*2);
+		}else if(!Physics.Linecast(pcamera.transform.position,pcamera.transform.parent.GetChild(2).position,out hit,1 << 8)) {
+			pcamera.transform.localPosition = Vector3.Lerp (pcamera.transform.localPosition, pcamera.transform.parent.GetChild (2).localPosition, Time.deltaTime*2);
+		} else
+		{
+			print (hit.transform.name);
+		}
         if (playerhud != null && uicrosshair != null)
         {
             if (Input.GetButtonDown(controllerMap))
