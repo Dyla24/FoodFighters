@@ -82,11 +82,11 @@ public void GetScores ()
 		}
 
         List<Score> highscores = new List<Score>();
-		char[] t = { '(', 'C', 'l', 'o', 'n', 'e', ')' };
+		char t = '_';
 		for (int i = 0; i < 4; i++) 
 		{
-			string s = players [i].gameObject.name.ToString ().TrimEnd (t);
-			highscores.Add (new Score (playerscore [i],players [i].gameObject.name.ToString () ));
+			string[] s = players [i].transform.GetChild(0).GetChild(1).gameObject.name.ToString ().Split(t);
+			highscores.Add (new Score (playerscore [i],s[0]));
 		}
         highscores.Sort();
 		for (int i = 0; i < 4; i++) 
