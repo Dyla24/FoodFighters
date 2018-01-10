@@ -34,6 +34,10 @@ public class GunScript : MonoBehaviour {
 		reloads = 1;
         if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
 		audiosauce = GetComponent<AudioSource>();
+		if (Settingsmanager.settings != null) 
+		{
+			audiosauce.volume = Settingsmanager.settings.gamesettings.effectvolume;
+		}
 	}
 	
 	// Update is called once per frame
