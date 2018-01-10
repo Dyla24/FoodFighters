@@ -152,7 +152,6 @@ public class Charactercontroller : MonoBehaviour {
 			else
             {
                 himage.fillAmount = 1;
-				print (himage.fillAmount);
             }
 			Image aimage = playerhud.transform.GetChild (2).GetChild(1).GetComponent<Image> ();
 			ammopercentage = gun.ammo / startammo;

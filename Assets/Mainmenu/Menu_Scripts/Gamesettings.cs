@@ -12,6 +12,9 @@ public class Gamesettings {
 	public float cthickness;
 	public float clength;
     public float sensitivity;
+	public float mastervolume;
+	public float backgroundvolume;
+	public float effectvolume;
     public bool sprint;
 	public int p1char;
 	public int p2char;

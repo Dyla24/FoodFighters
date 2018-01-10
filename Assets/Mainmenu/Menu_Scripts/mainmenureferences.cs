@@ -14,6 +14,9 @@ public class mainmenureferences : MonoBehaviour {
 	public Slider cthickness;
 	public Slider clength;
     public Slider sensitivity;
+	public Slider mastervol;
+	public Slider backgroundvol;
+	public Slider effectvol;
 	public GameObject crosshair;
 	public GameObject applysettings;
 

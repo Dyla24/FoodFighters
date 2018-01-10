@@ -9,12 +9,13 @@ public class Settingsmanager : MonoBehaviour {
 	public static Settingsmanager settings;
 	public Toggle fullscreen, sprint;
 	public Dropdown quality, resolutiondropdown, vsync;
-	public Slider ccentergap, cdotsize, cthickness, clength, sensitivity;
+	public Slider ccentergap, cdotsize, cthickness, clength, sensitivity,mastervol, backgroundvol,effectvol;
 	public Gamesettings gamesettings;
 	public Resolution[] resolutions;
 	public GameObject crosshair;
 	public int[] character = new int[4];
 	public GameObject applysettings;
+	GameObject bgm;
 
 	void Awake()
 	{
@@ -38,6 +39,9 @@ public class Settingsmanager : MonoBehaviour {
 		cdotsize.onValueChanged.AddListener(delegate {dotsizechange();});
 		cthickness.onValueChanged.AddListener(delegate {thicknesschange();});
 		clength.onValueChanged.AddListener(delegate {crosshairlengthchange();});
+		mastervol.onValueChanged.AddListener(delegate {mvolchange();});
+		backgroundvol.onValueChanged.AddListener (delegate {bvolchange ();});
+		effectvol.onValueChanged.AddListener (delegate {evolchange ();});
         sprint.onValueChanged.AddListener(delegate {schange(); });
         sensitivity.onValueChanged.AddListener(delegate { senschange(); });
 		applysettings.GetComponent<Button> ().onClick.AddListener (delegate {savesettings ();});
@@ -60,14 +64,25 @@ public class Settingsmanager : MonoBehaviour {
 			cthickness = sr.cthickness;
 			clength = sr.clength;
 			crosshair = sr.crosshair;
+			mastervol = sr.mastervol;
+			backgroundvol = sr.backgroundvol;
+			effectvol = sr.effectvol;
             sensitivity = sr.sensitivity;
             sprint = sr.sprint;
 			applysettings = sr.applysettings;
 			setupsettings ();
 			loadsettings ();
 		}
+		if (b.buildIndex == 2) 
+		{
+			bvolset ();
+		}
 	}
-
+	void bvolset()
+	{
+		bgm = GameObject.FindGameObjectWithTag ("BGM");
+		bgm.transform.GetChild (0).GetComponent<AudioSource> ().volume = gamesettings.backgroundvolume;
+	}
 	public void fullscreenchange()
 	{
 		Screen.fullScreen = gamesettings.fullscreen = fullscreen.isOn;
@@ -104,6 +119,21 @@ public class Settingsmanager : MonoBehaviour {
 		gamesettings.clength = clength.value;
 		crosshair.GetComponent<crosshairmanager> ().crosshairlength ();
 	}
+	public void mvolchange()
+	{
+		AudioListener.volume = gamesettings.mastervolume = mastervol.value;
+	}
+	public void bvolchange()
+	{
+		if (bgm == null) {
+			bgm = GameObject.FindGameObjectWithTag ("BGM");
+		}
+		bgm.transform.GetChild(0).GetComponent<AudioSource> ().volume = gamesettings.backgroundvolume = backgroundvol.value;
+	}
+	public void evolchange()
+	{
+		gamesettings.effectvolume = effectvol.value;
+	}
     public void schange()
     {
         gamesettings.sprint = sprint.isOn;
@@ -126,6 +156,10 @@ public class Settingsmanager : MonoBehaviour {
 		gconfig.WriteLine ("Dot Size = " + gamesettings.cdotsize);
 		gconfig.WriteLine ("Thickness = " + gamesettings.cthickness);
 		gconfig.WriteLine ("Crosshair Length = " + gamesettings.clength);
+		gconfig.WriteLine ("Sound Settings");
+		gconfig.WriteLine ("Master Volume = " + gamesettings.mastervolume);
+		gconfig.WriteLine ("Background Volume = " + gamesettings.backgroundvolume);
+		gconfig.WriteLine ("Effect Volume = " + gamesettings.effectvolume);
         gconfig.WriteLine("Controller Settings");
         gconfig.WriteLine("Shift = " + gamesettings.sprint);
         gconfig.WriteLine("Sensitivity = " + gamesettings.sensitivity);
@@ -134,29 +168,37 @@ public class Settingsmanager : MonoBehaviour {
 	public void loadsettings()
 	{
 		string filename = "/videosettings.txt";
+		char breaker = '=';
 		StreamReader reader = new StreamReader (Application.persistentDataPath + filename);
-		string fs = reader.ReadLine ();
-		fullscreen.isOn = gamesettings.fullscreen = bool.Parse (fs.Substring (fs.Length - 5));
-		string q = reader.ReadLine ();
-		quality.value = gamesettings.quality = int.Parse (q.Substring (q.Length - 1));
-		string r = reader.ReadLine ();
-		resolutiondropdown.value = gamesettings.resolutionindex = int.Parse (r.Substring (r.Length - 1));
-		string v = reader.ReadLine ();
-		vsync.value = gamesettings.vsync = int.Parse (v.Substring (v.Length - 1));
+		string[] fs = reader.ReadLine ().Split (breaker);
+		fullscreen.isOn = gamesettings.fullscreen = bool.Parse (fs[1]);
+		string[] q = reader.ReadLine ().Split (breaker);
+		quality.value = gamesettings.quality = int.Parse (q[1]);
+		string[] r = reader.ReadLine ().Split (breaker);
+		resolutiondropdown.value = gamesettings.resolutionindex = int.Parse (r[1]);
+		string[] v = reader.ReadLine ().Split (breaker);
+		vsync.value = gamesettings.vsync = int.Parse (v[1]);
 		reader.ReadLine ();
-		string cg = reader.ReadLine ();
-		ccentergap.value = gamesettings.ccentergap = int.Parse(cg.Substring(cg.Length-2));
-		string ds = reader.ReadLine ();
-		cdotsize.value = gamesettings.cdotsize = int.Parse(ds.Substring(ds.Length-2));
-		string ct = reader.ReadLine ();
-		cthickness.value = gamesettings.cthickness = int.Parse(ct.Substring(ct.Length-2));
-		string cl = reader.ReadLine ();
-		clength.value = gamesettings.clength = int.Parse(cl.Substring(cl.Length-2));
+		string[] cg = reader.ReadLine ().Split (breaker);
+		ccentergap.value = gamesettings.ccentergap = int.Parse(cg[1]);
+		string[] ds = reader.ReadLine ().Split (breaker);
+		cdotsize.value = gamesettings.cdotsize = int.Parse(ds[1]);
+		string[] ct = reader.ReadLine ().Split (breaker);
+		cthickness.value = gamesettings.cthickness = int.Parse(ct[1]);
+		string[] cl = reader.ReadLine ().Split (breaker);
+		clength.value = gamesettings.clength = int.Parse(cl[1]);
+		reader.ReadLine ();
+		string[] mv = reader.ReadLine ().Split (breaker);
+		mastervol.value = gamesettings.mastervolume = float.Parse (mv [1]);
+		string[] bv = reader.ReadLine ().Split (breaker);
+		backgroundvol.value = gamesettings.backgroundvolume = float.Parse (bv [1]);
+		string[] ev = reader.ReadLine ().Split (breaker);
+		effectvol.value = gamesettings.effectvolume = float.Parse (ev [1]);
         reader.ReadLine();
-        string sp = reader.ReadLine();
-        sprint.isOn = gamesettings.sprint = bool.Parse(sp.Substring(sp.Length - 5));
-        string se = reader.ReadLine();
-        sensitivity.value = gamesettings.sensitivity = int.Parse(se.Substring(se.Length - 1));
+		string[] sp = reader.ReadLine().Split (breaker);
+        sprint.isOn = gamesettings.sprint = bool.Parse(sp[1]);
+		string[] se = reader.ReadLine().Split (breaker);
+        sensitivity.value = gamesettings.sensitivity = int.Parse(se[1]);
 		reader.Close ();
 	}
 
