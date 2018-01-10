@@ -9,6 +9,7 @@ public class charselect : MonoBehaviour {
 	private Settingsmanager sm;
 	int i;
 	public GameObject[] pickedchar = new GameObject[4];
+	public Sprite[] pickedcharimage = new Sprite[4];
 	public Sprite[] charimage = new Sprite[4];
 	public GameObject hand;
 	public Vector2[] handpos = new Vector2[4];
@@ -32,6 +33,7 @@ public class charselect : MonoBehaviour {
 		Settingsmanager.settings.character [i] = charnumber;
 		pickedchar [i].GetComponent<Image>().sprite = charimage[charnumber];
 		pickedchar [i].GetComponent<Image> ().enabled = true;
+		buttons [charnumber].transform.GetChild(0).GetComponent<Image> ().sprite = pickedcharimage [charnumber];
 		i++;
 		if (i == 4) 
 		{
@@ -44,6 +46,7 @@ public class charselect : MonoBehaviour {
 				break;
 			}
 		}
+
 	}
 	public void onselect(int bno)
 	{
@@ -67,5 +70,12 @@ public class charselect : MonoBehaviour {
         {
             image.GetComponent<Image>().sprite = null;
         }
+		for (int i = 0; i < 4; i++) 
+		{
+			pickedchar [i].GetComponent<Image> ().enabled = false;
+			pickedchar [i].GetComponent<Image> ().sprite = charimage [i];
+			buttons [i].transform.GetChild(0).GetComponent<Image> ().sprite = charimage [i];
+		}
+		hand.GetComponent<RectTransform>().anchoredPosition = handpos [0];
     }
 }
