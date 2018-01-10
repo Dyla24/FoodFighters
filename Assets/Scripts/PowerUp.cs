@@ -130,6 +130,7 @@ public class PowerUp : MonoBehaviour
     {
         if (PU_active == true)
         {
+            bob.ammoadder = true;
             bob.ammoHolder += ammo;
         }
     }
