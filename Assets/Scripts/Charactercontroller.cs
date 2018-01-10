@@ -31,7 +31,7 @@ public class Charactercontroller : MonoBehaviour {
     public int bulletStrength;
     public Text textbox;
     private float speed;
-    private bool ammoadder;
+    public bool ammoadder;
     public int ammoHolder;
     int starthealth;
 	public GameObject shoulder;
@@ -103,7 +103,8 @@ public class Charactercontroller : MonoBehaviour {
         }
         if (ammoadder == true)
         {
-            ammoHolder += gun.reloads;
+            gun.reloads += ammoHolder;
+            ammoadder = false;
 		}
         pcamera.transform.parent.position = shoulder.transform.position;
     }
