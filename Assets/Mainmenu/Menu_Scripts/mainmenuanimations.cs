@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class mainmenuanimations : MonoBehaviour {
 	public Animator animator;
-	public GameObject characterselect, mainmenu, options, credits, mpanel1, mpanel2;
+	public GameObject characterselect, mainmenu, options, credits, mpanel1, mpanel2,mpanel3;
 
 
 
@@ -48,6 +48,7 @@ public class mainmenuanimations : MonoBehaviour {
 	{
 		mpanel1.SetActive (!mpanel1.activeInHierarchy);
 		mpanel2.SetActive (!mpanel2.activeInHierarchy);
+		mpanel3.SetActive (!mpanel3.activeInHierarchy);
 	}
 }
 

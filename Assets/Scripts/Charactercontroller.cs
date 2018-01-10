@@ -69,12 +69,17 @@ public class Charactercontroller : MonoBehaviour {
         {
             gamesettings = Settingsmanager.settings.gamesettings;
         }
-        if (gamesettings != null)
-        {
-            sensitivity = gamesettings.sensitivity;
-            sprint = gamesettings.sprint;
-        }
-    }
+		if (gamesettings != null) {
+			if (gamesettings.sensitivity != 0) 
+			{
+				sensitivity = gamesettings.sensitivity;
+			}
+			sprint = gamesettings.sprint;
+		} else {
+			sensitivity = 2;
+			sprint = false;
+		}
+	}
 
     void Update()
     {

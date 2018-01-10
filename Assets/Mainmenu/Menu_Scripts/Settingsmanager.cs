@@ -81,7 +81,10 @@ public class Settingsmanager : MonoBehaviour {
 	void bvolset()
 	{
 		bgm = GameObject.FindGameObjectWithTag ("BGM");
-		bgm.transform.GetChild (0).GetComponent<AudioSource> ().volume = gamesettings.backgroundvolume;
+		if (gamesettings.backgroundvolume != 0) 
+		{
+			bgm.transform.GetChild (0).GetComponent<AudioSource> ().volume = gamesettings.backgroundvolume;
+		}
 	}
 	public void fullscreenchange()
 	{
