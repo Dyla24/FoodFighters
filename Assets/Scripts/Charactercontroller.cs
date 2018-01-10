@@ -105,6 +105,7 @@ public class Charactercontroller : MonoBehaviour {
         {
             gun.reloads += ammoHolder;
             ammoadder = false;
+            ammoHolder = 0;
 		}
         pcamera.transform.parent.position = shoulder.transform.position;
     }

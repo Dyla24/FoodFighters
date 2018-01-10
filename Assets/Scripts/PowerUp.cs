@@ -10,6 +10,7 @@ public class PowerUp : MonoBehaviour
     public int damageboost;
     public int ammo;
     public float timer = 5;
+    public bool powerUpCollecter = false;
     public Charactercontroller bob;
     Collider b_collider;
     Renderer b_rend;
@@ -70,6 +71,8 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
+                powerUpCollecter = true;
+                StartCoroutine(Powerupreset());
             }
             if (gameObject.CompareTag("Speedy"))
             {
@@ -78,6 +81,8 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
+                powerUpCollecter = true;
+                StartCoroutine(Powerupreset());
             }
             if (gameObject.CompareTag("Hurty"))
             {
@@ -86,6 +91,8 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
+                powerUpCollecter = true;
+                StartCoroutine(Powerupreset());
             }
             if (gameObject.CompareTag("Ammo"))
             {
@@ -94,6 +101,8 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
+                powerUpCollecter = true;
+                StartCoroutine(Powerupreset());
             }
         }
     }
@@ -132,6 +141,18 @@ public class PowerUp : MonoBehaviour
         {
             bob.ammoadder = true;
             bob.ammoHolder += ammo;
+        }
+    }
+
+    IEnumerator Powerupreset()
+    {
+        if (powerUpCollecter == true)
+        {
+            yield return new WaitForSeconds(10);
+            b_collider.enabled = true;
+            b_rend.enabled = true;
+            b_part_rend.enabled = true;
+            powerUpCollecter = false;
         }
     }
 }
