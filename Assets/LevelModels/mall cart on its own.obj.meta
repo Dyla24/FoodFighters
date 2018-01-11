@@ -1,18 +1,17 @@
 fileFormatVersion: 2
-guid: 50202a6625ddbe84992a1d0090ef9e3d
-timeCreated: 1515615548
-licenseType: Free
+guid: 493138fef7090244983d304befe9e5f1
+timeCreated: 1515678099
+licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: shoe___display001
-    100002: //RootNode
-    400000: shoe___display001
-    400002: //RootNode
-    2300000: shoe___display001
-    3300000: shoe___display001
-    4300000: shoe___display001
-    6400000: shoe___display001
+    100000: //RootNode
+    100002: Mall_cart___01
+    400000: //RootNode
+    400002: Mall_cart___01
+    2300000: Mall_cart___01
+    3300000: Mall_cart___01
+    4300000: Mall_cart___01
   materials:
     importMaterials: 1
     materialName: 0
@@ -41,7 +40,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
