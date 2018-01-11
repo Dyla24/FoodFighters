@@ -272,10 +272,10 @@ public class Charactercontroller : MonoBehaviour {
         shootdirection = new Vector2(0f, Input.GetAxisRaw(controllerHorizontalRight));
         if (shootdirection.sqrMagnitude >= 0.2f)
         {
-            transform.Rotate(shootdirection * sensitivity);
+			transform.Rotate(shootdirection * (sensitivity + 0.2f));
         }
         //up/down rotation
-        vrotation += Input.GetAxisRaw(controllerVerticalRight)* (sensitivity/2);
+		vrotation += Input.GetAxisRaw(controllerVerticalRight)* ((sensitivity + 0.2f)/2);
 		vrotation = Mathf.Clamp(vrotation, -vrangeu, vranged);
 		pcamera.transform.parent.localRotation = Quaternion.Euler (vrotation, 0, 0);
 		RaycastHit hit;
