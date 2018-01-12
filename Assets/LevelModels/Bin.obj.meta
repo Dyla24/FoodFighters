@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Bin
     100002: //RootNode
+    100004: test_bin003
     400000: Bin
     400002: //RootNode
+    400004: test_bin003
     2300000: Bin
+    2300002: test_bin003
     3300000: Bin
+    3300002: test_bin003
     4300000: Bin
+    4300002: test_bin003
     6400000: Bin
+    6400002: test_bin003
   materials:
     importMaterials: 1
     materialName: 0
