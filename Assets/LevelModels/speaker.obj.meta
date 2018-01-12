@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: SPEAKER
     100002: //RootNode
+    100004: Object039
     400000: SPEAKER
     400002: //RootNode
+    400004: Object039
     2300000: SPEAKER
+    2300002: Object039
     3300000: SPEAKER
+    3300002: Object039
     4300000: SPEAKER
+    4300002: Object039
     6400000: SPEAKER
+    6400002: Object039
   materials:
     importMaterials: 1
     materialName: 0
