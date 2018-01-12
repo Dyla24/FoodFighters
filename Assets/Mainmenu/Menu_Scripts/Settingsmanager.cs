@@ -201,7 +201,7 @@ public class Settingsmanager : MonoBehaviour {
 		string[] sp = reader.ReadLine().Split (breaker);
         sprint.isOn = gamesettings.sprint = bool.Parse(sp[1]);
 		string[] se = reader.ReadLine().Split (breaker);
-        sensitivity.value = gamesettings.sensitivity = int.Parse(se[1]);
+		sensitivity.value = gamesettings.sensitivity = float.Parse(se[1]);
 		reader.Close ();
 	}
 
