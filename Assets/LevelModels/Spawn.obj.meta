@@ -30,6 +30,7 @@ ModelImporter:
     100044: test_bin001
     100046: test_bin002
     100048: test_bin003
+    100050: Glass_for_spawn
     400000: base_LP
     400002: bridge_placeholder
     400004: ice_cream_fidge_24
@@ -55,6 +56,7 @@ ModelImporter:
     400044: test_bin001
     400046: test_bin002
     400048: test_bin003
+    400050: Glass_for_spawn
     2300000: base_LP
     2300002: bridge_placeholder
     2300004: ice_cream_fidge_24_MeshPart0
@@ -77,6 +79,7 @@ ModelImporter:
     2300038: test_bin001
     2300040: test_bin002
     2300042: test_bin003
+    2300044: Glass_for_spawn
     3300000: base_LP
     3300002: bridge_placeholder
     3300004: ice_cream_fidge_24_MeshPart0
@@ -99,6 +102,7 @@ ModelImporter:
     3300038: test_bin001
     3300040: test_bin002
     3300042: test_bin003
+    3300044: Glass_for_spawn
     4300000: base_LP
     4300002: bridge_placeholder
     4300004: ice_cream_fidge_24_MeshPart0
@@ -121,6 +125,7 @@ ModelImporter:
     4300038: test_bin001
     4300040: test_bin002
     4300042: test_bin003
+    4300044: Glass_for_spawn
     6400000: base_LP
     6400002: bridge_placeholder
     6400004: ice_cream_fidge_24_MeshPart0
@@ -143,6 +148,7 @@ ModelImporter:
     6400038: test_bin001
     6400040: test_bin002
     6400042: test_bin003
+    6400044: Glass_for_spawn
   materials:
     importMaterials: 1
     materialName: 0
