@@ -36,6 +36,7 @@ public class PowerupCart : MonoBehaviour {
                     GameObject c = (GameObject)Instantiate(confetti, this.transform.position, Quaternion.identity, this.gameObject.transform);
                     Destroy(c, 2);
                     GameObject p = (GameObject)Instantiate(powerups[Random.Range(0, 3)], pspawnl.transform.position, Quaternion.identity);
+					p.GetComponent<PowerUp> ().drop = true;
                     StartCoroutine(powerupreset());
                 }
             }

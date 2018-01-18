@@ -11,6 +11,7 @@ public class PowerUp : MonoBehaviour
     public int ammo;
     public float timer = 5;
     public bool powerUpCollecter = false;
+	public bool drop = false;
     public Charactercontroller bob;
     Collider b_collider;
     Renderer b_rend;
@@ -71,8 +72,11 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
-                powerUpCollecter = true;
-                StartCoroutine(Powerupreset());
+				if (!drop) 
+				{
+					powerUpCollecter = true;
+					StartCoroutine(Powerupreset());
+				}
             }
             if (gameObject.CompareTag("Speedy"))
             {
@@ -80,9 +84,12 @@ public class PowerUp : MonoBehaviour
                 PU_speed();
                 b_collider.enabled = false;
                 b_rend.enabled = false;
-                b_part_rend.enabled = false;
-                powerUpCollecter = true;
-                StartCoroutine(Powerupreset());
+				b_part_rend.enabled = false;
+				if (!drop) 
+				{
+					powerUpCollecter = true;
+					StartCoroutine(Powerupreset());
+				}
             }
             if (gameObject.CompareTag("Hurty"))
             {
@@ -90,9 +97,12 @@ public class PowerUp : MonoBehaviour
                 PU_Hurty_Ammo();
                 b_collider.enabled = false;
                 b_rend.enabled = false;
-                b_part_rend.enabled = false;
-                powerUpCollecter = true;
-                StartCoroutine(Powerupreset());
+				b_part_rend.enabled = false;
+				if (!drop) 
+				{
+					powerUpCollecter = true;
+					StartCoroutine(Powerupreset());
+				}
             }
             if (gameObject.CompareTag("Ammo"))
             {
@@ -101,8 +111,11 @@ public class PowerUp : MonoBehaviour
                 b_collider.enabled = false;
                 b_rend.enabled = false;
                 b_part_rend.enabled = false;
-                powerUpCollecter = true;
-                StartCoroutine(Powerupreset());
+				if (!drop) 
+				{
+					powerUpCollecter = true;
+					StartCoroutine(Powerupreset());
+				}
             }
         }
     }
