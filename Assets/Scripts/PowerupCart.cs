@@ -46,6 +46,7 @@ public class PowerupCart : MonoBehaviour {
     {
         yield return new WaitForSeconds(10);
         pspawn = true;
+		hits = 3;
         yield return null;
     }
 }
