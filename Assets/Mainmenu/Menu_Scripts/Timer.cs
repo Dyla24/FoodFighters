@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour {
     private bool scoredisplayed = true;
 	public GameObject Results;
 	bool r1 = false;
+	public GameObject bg;
 
 	// Use this for initialization
 	void Start () 
@@ -63,6 +64,7 @@ public class Timer : MonoBehaviour {
         
 		if (!timer && starttime == 0)
         {
+			bg.SetActive (true);
 			if (!r1) {
 				Time.timeScale = Mathf.Lerp (1, 0, ftime);
 				ftime += Time.deltaTime / 2;
@@ -79,6 +81,7 @@ public class Timer : MonoBehaviour {
 	void LS()
 	{
 		Time.timeScale = 1;
+
 		Results.SetActive (true);
         GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Scoremanager>().GetScores();
 
