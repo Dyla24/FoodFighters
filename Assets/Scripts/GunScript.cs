@@ -20,7 +20,7 @@ public class GunScript : MonoBehaviour {
     public float shotspershot = 1;
     public Text textbox;
 	GameObject pewpew;
-    string playertag; // new
+	GameObject player; // new
     public Animator animator;
     // Use this for initialization
 	bool tr;
@@ -32,7 +32,10 @@ public class GunScript : MonoBehaviour {
 		tr = false;
         baseammo = ammo;
 		reloads = 1;
-        if (this.transform.parent.parent) { playertag = this.transform.parent.parent.tag; } //new need to assign player tags to p1,2,3,4
+        if (this.transform.parent.parent) 
+		{ 
+			player = this.transform.root.gameObject; 
+		}
 		audiosauce = GetComponent<AudioSource>();
 		if (Settingsmanager.settings != null) 
 		{
@@ -91,7 +94,7 @@ public class GunScript : MonoBehaviour {
 			} else {
 				pewpew.GetComponent<Rigidbody> ().velocity = ray.direction * -bulletspeed;
 			}
-            pewpew.GetComponent<KillBullet>().Setfiretag(playertag);
+            pewpew.GetComponent<KillBullet>().Setfiretag(player);
             lastShot = Time.time;
         }
 
