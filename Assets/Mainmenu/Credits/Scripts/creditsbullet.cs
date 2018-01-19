@@ -32,6 +32,9 @@ public class creditsbullet : MonoBehaviour {
 		} else {
 			Destroy (this.gameObject);
 			other.transform.parent.GetComponent<Containerscript> ().explosion (transform.position);
+			audios.clip = crash;
+			audios.volume = 0.5f;
+			audios.Play ();
 		}
 	}
 }
