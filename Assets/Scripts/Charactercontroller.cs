@@ -54,7 +54,7 @@ public class Charactercontroller : MonoBehaviour {
         killconfirm = true; //new
         kills = 0; //new
         lasthitby = "N/A"; // new
-        starthealth = 10;
+        starthealth = 25;
         nspeed = 5;
         sspeed = nspeed * 1.5f;
         myrigidbody = this.GetComponent<Rigidbody>();
