@@ -41,10 +41,6 @@ public class PowerUp : MonoBehaviour
                 {
                     bob.nspeed -= speedBoost;
                 }
-                if (gameObject.CompareTag("Healthy"))
-                {
-                    bob.curhealth -= healthBoost;
-                }
                 if (gameObject.CompareTag("Hurty"))
                 {
                     bob.bulletStrength -= damageboost;
