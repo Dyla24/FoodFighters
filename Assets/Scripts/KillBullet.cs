@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KillBullet : MonoBehaviour {
-    public string firetag; //new
+	public GameObject firetag; //new
     // Use this for initialization
     void Start () {
 		
@@ -28,13 +28,13 @@ public class KillBullet : MonoBehaviour {
 		}
     }
 
-    public void Setfiretag(string tag) //new
+	public void Setfiretag(GameObject tag) //new
     {
         firetag = tag;
 
     }
 
-    public string Getfiretag() //new
+	public GameObject Getfiretag() //new
     {
 
         return firetag;

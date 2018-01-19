@@ -39,7 +39,7 @@ public class Charactercontroller : MonoBehaviour {
 	public float startammo;
 	public GunScript gun;
     string lasthitby; // new
-    int kills; //new
+	public int kills; //new
     public GameObject killer; //new
     bool killconfirm; //new
 	public bool tr;
@@ -92,7 +92,7 @@ public class Charactercontroller : MonoBehaviour {
 		}
         if (curhealth <= 0)
         {
-            killer = GameObject.FindGameObjectWithTag(lasthitby); // new
+            //killer = GameObject.FindGameObjectWithTag(lasthitby); // new
             if (killconfirm == true)
             {
                 killer.GetComponentInChildren<Charactercontroller>().Addkill(); // new
@@ -139,7 +139,7 @@ public class Charactercontroller : MonoBehaviour {
         if (collision.gameObject.tag == "Bullet")
         {
             curhealth = curhealth - bulletStrength;
-            lasthitby = collision.gameObject.GetComponent<KillBullet>().Getfiretag(); // new
+			killer = collision.gameObject.GetComponent<KillBullet>().Getfiretag(); // new
 
             collision.gameObject.SetActive(false);
         }
